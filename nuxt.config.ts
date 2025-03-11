@@ -1,16 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { $info } from "./info"
-
+import tailwindcss from "@tailwindcss/vite";
 const { siteName } = $info
 
 export default defineNuxtConfig({
     ssr: false,
     spaLoadingTemplate: 'spa-loading-template.html',
+
     nitro: {
         prerender: {
             autoSubfolderIndex: false
         }
     },
+
     app: {
         head: {
             title: 'Home',
@@ -32,6 +34,7 @@ export default defineNuxtConfig({
     },
 
     css: ["bootstrap/dist/css/bootstrap.min.css", "@/assets/scss/style.scss"],
+
     vite: {
         css: {
             preprocessorOptions: {
@@ -44,7 +47,12 @@ export default defineNuxtConfig({
             alias: {
                 'vue-easy-lightbox': 'vue-easy-lightbox/dist/external-css/vue-easy-lightbox.esm.min.js'
             }
-        }
+        },
+        plugins: [
+            tailwindcss(),
+          ],
     },
+
     plugins: ["@/plugins/aos"],
+    modules: [],
 })
