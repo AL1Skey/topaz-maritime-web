@@ -1,7 +1,15 @@
 <script setup>
+import PopupModal from '~/components/PopupModal.vue'
+
 const api = useApi()
 
 const banners = ref([])
+
+const showPopup = ref(true)
+
+function handleClosePopup() {
+  showPopup.value = false
+}
 
 onMounted(async() => {
     const data = await api.get('/banners')
@@ -29,11 +37,13 @@ onMounted(async() => {
     })
     newsArticles.value = data.data
     console.log("🚀 | onMounted | newsArticles.value:", newsArticles.value)
+    console.log("🚀 | onMounted | Popup:", showPopup.value)
 })
 </script>
 
 <template>
     <div class="main-container">
+        <PopupModal :show="showPopup" @close="handleClosePopup" />
         <TheHeader />
         <OffCanvasMobileMenu />
         <HeroOne :banners="banners" />

@@ -1,301 +1,624 @@
 <template>
-  <div class="container my-5">
-    <div class="card shadow-lg border-0">
-      <div class="card-header bg-primary text-white py-3">
-        <h2 class="mb-0">Registration Form</h2>
-      </div>
-      <div class="card-body p-4">
-        <form @submit.prevent="submitForm">
-          <!-- Progress bar -->
-          <div class="progress mb-4" style="height: 10px;">
-            <div class="progress-bar" role="progressbar" :style="`width: ${progress}%`" 
-                 :aria-valuenow="progress" aria-valuemin="0" aria-valuemax="100"></div>
+  <div class="maritime-form-container">
+    <div class="container py-5">
+      <div class="card shadow-lg border-0">
+        <div class="card-header bg-primary text-white">
+          <div class="d-flex align-items-center">
+            <i class="bi bi-ship me-2 fs-3"></i>
+            <h2 class="mb-0">Maritime Crew Application Form</h2>
           </div>
-
-          <!-- Navigation tabs -->
-          <ul class="nav nav-tabs mb-4">
-            <li class="nav-item" v-for="(section, index) in sections" :key="index">
-              <button class="nav-link" :class="{ active: currentSection === index }" 
-                      @click.prevent="currentSection = index">
-                {{ section }}
-              </button>
-            </li>
-          </ul>
-
-          <!-- 1. Personal Data Section -->
-          <div v-if="currentSection === 0" class="section-content">
-            <h3 class="mb-4 border-bottom pb-2">1. Personal Data</h3>
-            
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <div class="form-group mb-3">
-                  <label for="fullName" class="form-label">Full Name <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="fullName" v-model="formData.personalData.fullName" required>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group mb-3">
-                  <label for="email" class="form-label">Email Address <span class="text-danger">*</span></label>
-                  <input type="email" class="form-control" id="email" v-model="formData.personalData.email" required>
-                </div>
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <div class="form-group mb-3">
-                  <label for="phone" class="form-label">Phone Number <span class="text-danger">*</span></label>
-                  <input type="tel" class="form-control" id="phone" v-model="formData.personalData.phone" required>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group mb-3">
-                  <label for="dateOfBirth" class="form-label">Date of Birth <span class="text-danger">*</span></label>
-                  <input type="date" class="form-control" id="dateOfBirth" v-model="formData.personalData.dateOfBirth" required>
-                </div>
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <div class="form-group mb-3">
-                  <label for="gender" class="form-label">Gender <span class="text-danger">*</span></label>
-                  <select class="form-select" id="gender" v-model="formData.personalData.gender" required>
-                    <option value="">Select Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group mb-3">
-                  <label for="nationality" class="form-label">Nationality <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="nationality" v-model="formData.personalData.nationality" required>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group mb-3">
-              <label for="address" class="form-label">Current Address <span class="text-danger">*</span></label>
-              <textarea class="form-control" id="address" rows="3" v-model="formData.personalData.address" required></textarea>
-            </div>
-
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <div class="form-group mb-3">
-                  <label for="city" class="form-label">City <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="city" v-model="formData.personalData.city" required>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group mb-3">
-                  <label for="postalCode" class="form-label">Postal Code <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="postalCode" v-model="formData.personalData.postalCode" required>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 2. Document Section -->
-          <div v-if="currentSection === 1" class="section-content">
-            <h3 class="mb-4 border-bottom pb-2">2. Document</h3>
-            
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <div class="form-group mb-3">
-                  <label for="idType" class="form-label">ID Type <span class="text-danger">*</span></label>
-                  <select class="form-select" id="idType" v-model="formData.document.idType" required>
-                    <option value="">Select ID Type</option>
-                    <option value="passport">Passport</option>
-                    <option value="nationalId">National ID</option>
-                    <option value="drivingLicense">Driving License</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group mb-3">
-                  <label for="idNumber" class="form-label">ID Number <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="idNumber" v-model="formData.document.idNumber" required>
-                </div>
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <div class="form-group mb-3">
-                  <label for="issueDate" class="form-label">Issue Date <span class="text-danger">*</span></label>
-                  <input type="date" class="form-control" id="issueDate" v-model="formData.document.issueDate" required>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group mb-3">
-                  <label for="expiryDate" class="form-label">Expiry Date <span class="text-danger">*</span></label>
-                  <input type="date" class="form-control" id="expiryDate" v-model="formData.document.expiryDate" required>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group mb-3">
-              <label for="documentUpload" class="form-label">Upload Document (PDF or Image) <span class="text-danger">*</span></label>
-              <input type="file" class="form-control" id="documentUpload" @change="handleFileUpload($event, 'document')" accept=".pdf,.jpg,.jpeg,.png">
-              <div class="form-text">Maximum file size: 5MB</div>
-            </div>
-          </div>
-
-          <!-- 3. Trainings Section -->
-          <div v-if="currentSection === 2" class="section-content">
-            <h3 class="mb-4 border-bottom pb-2">3. Trainings</h3>
-            
-            <div v-for="(training, index) in formData.trainings" :key="index" class="card mb-3 border-light shadow-sm">
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <h5 class="card-title mb-0">Training #{{ index + 1 }}</h5>
-                  <button type="button" class="btn btn-sm btn-outline-danger" @click="removeTraining(index)">
-                    <i class="bi bi-trash"></i> Remove
-                  </button>
-                </div>
-
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <div class="form-group mb-3">
-                      <label :for="`trainingName${index}`" class="form-label">Training Name <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" :id="`trainingName${index}`" v-model="training.name" required>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group mb-3">
-                      <label :for="`institution${index}`" class="form-label">Institution <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" :id="`institution${index}`" v-model="training.institution" required>
-                    </div>
+        </div>
+        <div class="card-body">
+          <form @submit.prevent="submitForm">
+            <!-- Personal Information Section -->
+            <div class="section-container mb-4">
+              <h4 class="section-title">
+                <i class="bi bi-person-badge me-2"></i>Personal Information
+              </h4>
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="name" v-model="formData.name" required>
+                    <label for="name">Full Name</label>
                   </div>
                 </div>
-
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <div class="form-group mb-3">
-                      <label :for="`startDate${index}`" class="form-label">Start Date <span class="text-danger">*</span></label>
-                      <input type="date" class="form-control" :id="`startDate${index}`" v-model="training.startDate" required>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group mb-3">
-                      <label :for="`endDate${index}`" class="form-label">End Date <span class="text-danger">*</span></label>
-                      <input type="date" class="form-control" :id="`endDate${index}`" v-model="training.endDate" required>
-                    </div>
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="birthPlace" v-model="formData.birthPlace" required>
+                    <label for="birthPlace">Birth Place</label>
                   </div>
                 </div>
-
-                <div class="form-group mb-3">
-                  <label :for="`certificateUpload${index}`" class="form-label">Upload Certificate (if available)</label>
-                  <input type="file" class="form-control" :id="`certificateUpload${index}`" @change="handleFileUpload($event, 'training', index)" accept=".pdf,.jpg,.jpeg,.png">
-                  <div class="form-text">Maximum file size: 5MB</div>
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <input type="date" class="form-control" id="birthDate" v-model="formData.birthDate" required>
+                    <label for="birthDate">Birth Date</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <select class="form-select" id="sex" v-model="formData.sex" required>
+                      <option :value="true">Male</option>
+                      <option :value="false">Female</option>
+                    </select>
+                    <label for="sex">Sex</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <select class="form-select" id="maritalStatusId" v-model="formData.maritalStatusId" required>
+                      <option value="single">Single</option>
+                      <option value="married">Married</option>
+                      <option value="divorced">Divorced</option>
+                      <option value="widowed">Widowed</option>
+                    </select>
+                    <label for="maritalStatusId">Marital Status</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <input type="number" class="form-control" id="numberOfChild" v-model="formData.numberOfChild" min="0">
+                    <label for="numberOfChild">Number of Children</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <textarea class="form-control" id="address" v-model="formData.address" style="height: 100px" required></textarea>
+                    <label for="address">Address</label>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="city" v-model="formData.city" required>
+                    <label for="city">City</label>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="zipCode" v-model="formData.zipCode" required>
+                    <label for="zipCode">Zip Code</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <select class="form-select" id="countryId" v-model="formData.countryId" required>
+                      <option value="id">Indonesia</option>
+                      <option value="sg">Singapore</option>
+                      <option value="my">Malaysia</option>
+                      <option value="ph">Philippines</option>
+                      <!-- Add more countries as needed -->
+                    </select>
+                    <label for="countryId">Country</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <input type="tel" class="form-control" id="phoneNo" v-model="formData.phoneNo">
+                    <label for="phoneNo">Phone Number</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <input type="tel" class="form-control" id="handPhone" v-model="formData.handPhone" required>
+                    <label for="handPhone">Mobile Phone</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <input type="email" class="form-control" id="email" v-model="formData.email" required>
+                    <label for="email">Email</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <select class="form-select" id="religionId" v-model="formData.religionId">
+                      <option value="islam">Islam</option>
+                      <option value="christian">Christian</option>
+                      <option value="catholic">Catholic</option>
+                      <option value="hindu">Hindu</option>
+                      <option value="buddhist">Buddhist</option>
+                      <option value="other">Other</option>
+                    </select>
+                    <label for="religionId">Religion</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <select class="form-select" id="bloodType" v-model="formData.bloodType">
+                      <option value="A">A</option>
+                      <option value="B">B</option>
+                      <option value="AB">AB</option>
+                      <option value="O">O</option>
+                    </select>
+                    <label for="bloodType">Blood Type</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <select class="form-select" id="nationalityId" v-model="formData.nationalityId" required>
+                      <option value="id">Indonesian</option>
+                      <option value="sg">Singaporean</option>
+                      <option value="my">Malaysian</option>
+                      <option value="ph">Filipino</option>
+                      <!-- Add more nationalities as needed -->
+                    </select>
+                    <label for="nationalityId">Nationality</label>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <button type="button" class="btn btn-success" @click="addTraining">
-              <i class="bi bi-plus-circle"></i> Add Another Training
-            </button>
-          </div>
-
-          <!-- 4. Experiences Section -->
-          <div v-if="currentSection === 3" class="section-content">
-            <h3 class="mb-4 border-bottom pb-2">4. Experiences</h3>
-            
-            <div v-for="(experience, index) in formData.experiences" :key="index" class="card mb-3 border-light shadow-sm">
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <h5 class="card-title mb-0">Experience #{{ index + 1 }}</h5>
-                  <button type="button" class="btn btn-sm btn-outline-danger" @click="removeExperience(index)">
-                    <i class="bi bi-trash"></i> Remove
-                  </button>
+            <!-- Professional Information Section -->
+            <div class="section-container mb-4">
+              <h4 class="section-title">
+                <i class="bi bi-briefcase me-2"></i>Professional Information
+              </h4>
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <select class="form-select" id="rankToApply" v-model="formData.rankToApply" required>
+                      <!-- Deck Department -->
+                      <optgroup label="Deck Department">
+                        <option value="2110">MASTER</option>
+                        <option value="2120">CHIEF OFFICER</option>
+                        <option value="2130">SECOND OFFICER</option>
+                        <option value="2140">THIRD OFFICER</option>
+                        <option value="2150">SENIOR DECK CADET</option>
+                      </optgroup>
+                      
+                      <!-- Engine Department -->
+                      <optgroup label="Engine Department">
+                        <option value="2210">CHIEF ENGINEER</option>
+                        <option value="2220">SECOND ENGINEER</option>
+                        <option value="2230">THIRD ENGINEER</option>
+                        <option value="2240">FOURTH ENGINEER</option>
+                        <option value="2250">SENIOR ENGINE CADET</option>
+                        <option value="2260">ELECTRICIAN</option>
+                      </optgroup>
+                      
+                      <!-- Deck Ratings -->
+                      <optgroup label="Deck Ratings">
+                        <option value="2300">PUMPMAN</option>
+                        <option value="2320">Q/MASTER</option>
+                        <option value="2330">SAILOR</option>
+                        <option value="2340">BOSUN</option>
+                      </optgroup>
+                      
+                      <!-- Engine Ratings -->
+                      <optgroup label="Engine Ratings">
+                        <option value="2420">OILER</option>
+                        <option value="2430">WIPER</option>
+                        <option value="2440">FITTER</option>
+                      </optgroup>
+                      
+                      <!-- Catering/Other -->
+                      <optgroup label="Catering & Other">
+                        <option value="2510">CHIEF COOK</option>
+                        <option value="2530">MESS BOY</option>
+                        <option value="2560">CADET TEHNIK</option>
+                        <option value="2570">CADET NAUTIC</option>
+                        <option value="2580">CADET ELECTRICIAN</option>
+                      </optgroup>
+                    </select>
+                    <label for="rankToApply">Rank to Apply</label>
+                  </div>
                 </div>
-
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <div class="form-group mb-3">
-                      <label :for="`jobTitle${index}`" class="form-label">Job Title <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" :id="`jobTitle${index}`" v-model="experience.jobTitle" required>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group mb-3">
-                      <label :for="`company${index}`" class="form-label">Company <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" :id="`company${index}`" v-model="experience.company" required>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <div class="form-group mb-3">
-                      <label :for="`expStartDate${index}`" class="form-label">Start Date <span class="text-danger">*</span></label>
-                      <input type="date" class="form-control" :id="`expStartDate${index}`" v-model="experience.startDate" required>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group mb-3">
-                      <label :for="`expEndDate${index}`" class="form-label">End Date</label>
-                      <input type="date" class="form-control" :id="`expEndDate${index}`" v-model="experience.endDate" 
-                             :disabled="experience.currentlyWorking">
-                      <div class="form-check mt-2">
-                        <input class="form-check-input" type="checkbox" :id="`currentlyWorking${index}`" 
-                               v-model="experience.currentlyWorking">
-                        <label class="form-check-label" :for="`currentlyWorking${index}`">
-                          I currently work here
-                        </label>
+                <!-- Add this after the rankToApply select element -->
+                <div class="col-md-12" v-if="formData.rankToApply">
+                  <div class="alert alert-info">
+                    <h6 class="alert-heading"><i class="bi bi-info-circle me-2"></i>Required Certificates:</h6>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <strong>COC ID:</strong> 
+                        <span class="badge bg-primary me-1" v-for="(id, index) in requiredCertificates.cocId" :key="'id-'+index">
+                          {{ id }}
+                        </span>
+                      </div>
+                      <div class="col-md-6">
+                        <strong>COC Type:</strong>
+                        <span class="badge bg-secondary me-1" v-for="(type, index) in requiredCertificates.coc" :key="'type-'+index">
+                          {{ type }}
+                        </span>
                       </div>
                     </div>
                   </div>
                 </div>
-
-                <div class="form-group mb-3">
-                  <label :for="`responsibilities${index}`" class="form-label">Responsibilities <span class="text-danger">*</span></label>
-                  <textarea class="form-control" :id="`responsibilities${index}`" rows="3" 
-                            v-model="experience.responsibilities" required></textarea>
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <input type="date" class="form-control" id="rankApplyDate" v-model="formData.rankApplyDate">
+                    <label for="rankApplyDate">Rank Apply Date</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <select class="form-select" id="certificateId" v-model="formData.certificateId">
+                      <option value="coc">Certificate of Competency (COC)</option>
+                      <option value="goc">General Operator Certificate (GOC)</option>
+                      <option value="stcw">STCW Certificate</option>
+                      <!-- Add more certificate types as needed -->
+                    </select>
+                    <label for="certificateId">Certificate Type</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="certificateNo" v-model="formData.certificateNo">
+                    <label for="certificateNo">Certificate Number</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <select class="form-select" id="certificateStatusId" v-model="formData.certificateStatusId">
+                      <option value="valid">Valid</option>
+                      <option value="expired">Expired</option>
+                      <option value="pending">Pending</option>
+                    </select>
+                    <label for="certificateStatusId">Certificate Status</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="certificateIssued" v-model="formData.certificateIssued">
+                    <label for="certificateIssued">Certificate Issued By</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <input type="date" class="form-control" id="certificateIssuedDate" v-model="formData.certificateIssuedDate">
+                    <label for="certificateIssuedDate">Certificate Issue Date</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <input type="date" class="form-control" id="certificateExpiryDate" v-model="formData.certificateExpiryDate">
+                    <label for="certificateExpiryDate">Certificate Expiry Date</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label for="certificateDoc" class="form-label">Certificate Document</label>
+                  <input type="file" class="form-control" id="certificateDoc" @change="handleFileUpload($event, 'certificateDoc')">
                 </div>
               </div>
             </div>
 
-            <button type="button" class="btn btn-success" @click="addExperience">
-              <i class="bi bi-plus-circle"></i> Add Another Experience
-            </button>
-          </div>
+            <!-- Physical Information Section -->
+            <div class="section-container mb-4">
+              <h4 class="section-title">
+                <i class="bi bi-rulers me-2"></i>Physical Information & Uniform Sizes
+              </h4>
+              <div class="row g-3">
+                <div class="col-md-3">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="height" v-model="formData.height">
+                    <label for="height">Height (cm)</label>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="weight" v-model="formData.weight">
+                    <label for="weight">Weight (kg)</label>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <label for="photo" class="form-label">Photo (4x6)</label>
+                  <input type="file" class="form-control" id="photo" @change="handleFileUpload($event, 'photo')">
+                </div>
+                <div class="col-md-3">
+                  <div class="form-floating">
+                    <select class="form-select" id="whiteShirt" v-model="formData.whiteShirt">
+                      <option value="S">S</option>
+                      <option value="M">M</option>
+                      <option value="L">L</option>
+                      <option value="XL">XL</option>
+                      <option value="XXL">XXL</option>
+                    </select>
+                    <label for="whiteShirt">White Shirt Size</label>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-floating">
+                    <select class="form-select" id="bluePants" v-model="formData.bluePants">
+                      <option value="S">S</option>
+                      <option value="M">M</option>
+                      <option value="L">L</option>
+                      <option value="XL">XL</option>
+                      <option value="XXL">XXL</option>
+                    </select>
+                    <label for="bluePants">Blue Pants Size</label>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-floating">
+                    <select class="form-select" id="overall" v-model="formData.overall">
+                      <option value="S">S</option>
+                      <option value="M">M</option>
+                      <option value="L">L</option>
+                      <option value="XL">XL</option>
+                      <option value="XXL">XXL</option>
+                    </select>
+                    <label for="overall">Overall Size</label>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-floating">
+                    <select class="form-select" id="safetyShoes" v-model="formData.safetyShoes">
+                      <option value="39">39</option>
+                      <option value="40">40</option>
+                      <option value="41">41</option>
+                      <option value="42">42</option>
+                      <option value="43">43</option>
+                      <option value="44">44</option>
+                      <option value="45">45</option>
+                    </select>
+                    <label for="safetyShoes">Safety Shoes Size</label>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-floating">
+                    <select class="form-select" id="winterJacket" v-model="formData.winterJacket">
+                      <option value="S">S</option>
+                      <option value="M">M</option>
+                      <option value="L">L</option>
+                      <option value="XL">XL</option>
+                      <option value="XXL">XXL</option>
+                    </select>
+                    <label for="winterJacket">Winter Jacket Size</label>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-          <!-- Navigation buttons -->
-          <div class="d-flex justify-content-between mt-4">
-            <button type="button" class="btn btn-secondary" @click="prevSection" :disabled="currentSection === 0">
-              <i class="bi bi-arrow-left"></i> Previous
-            </button>
-            
-            <button v-if="currentSection < sections.length - 1" type="button" class="btn btn-primary" @click="nextSection">
-              Next <i class="bi bi-arrow-right"></i>
-            </button>
-            
-            <button v-else type="submit" class="btn btn-success">
-              <i class="bi bi-check-circle"></i> Submit Form
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+            <!-- Documents Section -->
+            <div class="section-container mb-4">
+              <h4 class="section-title">
+                <i class="bi bi-file-earmark-text me-2"></i>Documents
+              </h4>
+              <div v-for="(doc, index) in formData.documents" :key="index" class="document-item p-3 mb-3 border rounded">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h5 class="mb-0">Document #{{ index + 1 }}</h5>
+                  <button type="button" class="btn btn-danger btn-sm" @click="removeDocument(index)">
+                    <i class="bi bi-trash"></i> Remove
+                  </button>
+                </div>
+                <div class="row g-3">
+                  <div class="col-md-4">
+                    <div class="form-floating">
+                      <select class="form-select" :id="`docId-${index}`" v-model="doc.docId" required>
+                        <option value="passport">Passport</option>
+                        <option value="seamenBook">Seamen Book</option>
+                        <option value="yellowFever">Yellow Fever</option>
+                        <option value="visa">Visa</option>
+                        <!-- Add more document types as needed -->
+                      </select>
+                      <label :for="`docId-${index}`">Document Type</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" :id="`docNo-${index}`" v-model="doc.docNo" required>
+                      <label :for="`docNo-${index}`">Document Number</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label :for="`docFile-${index}`" class="form-label">Document File</label>
+                    <input type="file" class="form-control" :id="`docFile-${index}`" @change="handleDocFileUpload($event, index)">
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" :id="`issued-${index}`" v-model="doc.issued">
+                      <label :for="`issued-${index}`">Issued By</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-floating">
+                      <input type="date" class="form-control" :id="`validDate-${index}`" v-model="doc.validDate">
+                      <label :for="`validDate-${index}`">Valid Date</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-floating">
+                      <input type="date" class="form-control" :id="`expiredDate-${index}`" v-model="doc.expiredDate">
+                      <label :for="`expiredDate-${index}`">Expiry Date</label>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-floating">
+                      <textarea class="form-control" :id="`remark-${index}`" v-model="doc.remark" style="height: 80px"></textarea>
+                      <label :for="`remark-${index}`">Remarks</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary" @click="addDocument">
+                <i class="bi bi-plus-circle"></i> Add Document
+              </button>
+            </div>
 
-    <!-- Success Modal -->
-    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true" ref="successModal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header bg-success text-white">
-            <h5 class="modal-title" id="successModalLabel">Form Submitted Successfully</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <p>Thank you for submitting your information. Your registration has been received successfully.</p>
-            <p>We will review your application and contact you soon.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
+            <!-- Trainings Section -->
+            <div class="section-container mb-4">
+              <h4 class="section-title">
+                <i class="bi bi-mortarboard me-2"></i>Trainings & Certifications
+              </h4>
+              <div v-for="(training, index) in formData.trainings" :key="index" class="training-item p-3 mb-3 border rounded">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h5 class="mb-0">Training #{{ index + 1 }}</h5>
+                  <button type="button" class="btn btn-danger btn-sm" @click="removeTraining(index)">
+                    <i class="bi bi-trash"></i> Remove
+                  </button>
+                </div>
+                <div class="row g-3">
+                  <div class="col-md-4">
+                    <div class="form-floating">
+                      <select class="form-select" :id="`trainingId-${index}`" v-model="training.trainingId" required>
+                        <option value="basicSafety">Basic Safety Training</option>
+                        <option value="advancedFireFighting">Advanced Fire Fighting</option>
+                        <option value="medicalFirst">Medical First Aid</option>
+                        <option value="survivalCraft">Survival Craft & Rescue Boats</option>
+                        <option value="tankerFamiliarization">Tanker Familiarization</option>
+                        <!-- Add more training types as needed -->
+                      </select>
+                      <label :for="`trainingId-${index}`">Training Type</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" :id="`referenceId-${index}`" v-model="training.referenceId">
+                      <label :for="`referenceId-${index}`">Reference ID</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" :id="`certificateNo-${index}`" v-model="training.certificateNo">
+                      <label :for="`certificateNo-${index}`">Certificate Number</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-floating">
+                      <input type="date" class="form-control" :id="`validDate-${index}`" v-model="training.validDate">
+                      <label :for="`validDate-${index}`">Valid Date</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-floating">
+                      <input type="date" class="form-control" :id="`expiredDate-${index}`" v-model="training.expiredDate">
+                      <label :for="`expiredDate-${index}`">Expiry Date</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary" @click="addTraining">
+                <i class="bi bi-plus-circle"></i> Add Training
+              </button>
+            </div>
+
+            <!-- Sea Experience Section -->
+            <div class="section-container mb-4">
+              <h4 class="section-title">
+                <i class="bi bi-water me-2"></i>Sea Experience
+              </h4>
+              <div v-for="(exp, index) in formData.experiences" :key="index" class="experience-item p-3 mb-3 border rounded">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h5 class="mb-0">Experience #{{ index + 1 }}</h5>
+                  <button type="button" class="btn btn-danger btn-sm" @click="removeExperience(index)">
+                    <i class="bi bi-trash"></i> Remove
+                  </button>
+                </div>
+                <div class="row g-3">
+                  <div class="col-md-4">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" :id="`vessel-${index}`" v-model="exp.vessel" required>
+                      <label :for="`vessel-${index}`">Vessel Name</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-floating">
+                      <select class="form-select" :id="`vesselType-${index}`" v-model="exp.vesselType" required>
+                        <option value="bulkCarrier">Bulk Carrier</option>
+                        <option value="container">Container Ship</option>
+                        <option value="tanker">Tanker</option>
+                        <option value="lpg">LPG Carrier</option>
+                        <option value="lng">LNG Carrier</option>
+                        <option value="roro">Ro-Ro</option>
+                        <option value="passenger">Passenger Ship</option>
+                        <option value="generalCargo">General Cargo</option>
+                        <!-- Add more vessel types as needed -->
+                      </select>
+                      <label :for="`vesselType-${index}`">Vessel Type</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-floating">
+                      <select class="form-select" :id="`flag-${index}`" v-model="exp.flag">
+                        <option value="id">Indonesia</option>
+                        <option value="sg">Singapore</option>
+                        <option value="pa">Panama</option>
+                        <option value="li">Liberia</option>
+                        <option value="mh">Marshall Islands</option>
+                        <!-- Add more flags as needed -->
+                      </select>
+                      <label :for="`flag-${index}`">Flag</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-floating">
+                      <select class="form-select" :id="`tradingAreaId-${index}`" v-model="exp.tradingAreaId">
+                        <option value="worldwide">Worldwide</option>
+                        <option value="asia">Asia</option>
+                        <option value="europe">Europe</option>
+                        <option value="americas">Americas</option>
+                        <option value="africa">Africa</option>
+                        <option value="domestic">Domestic</option>
+                      </select>
+                      <label :for="`tradingAreaId-${index}`">Trading Area</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-floating">
+                      <select class="form-select" :id="`rank-${index}`" v-model="exp.rank" required>
+                        <option value="captain">Captain</option>
+                        <option value="chiefOfficer">Chief Officer</option>
+                        <option value="secondOfficer">Second Officer</option>
+                        <option value="thirdOfficer">Third Officer</option>
+                        <option value="chiefEngineer">Chief Engineer</option>
+                        <option value="secondEngineer">Second Engineer</option>
+                        <option value="thirdEngineer">Third Engineer</option>
+                        <option value="fourthEngineer">Fourth Engineer</option>
+                        <option value="bosun">Bosun</option>
+                        <option value="abSeaman">AB Seaman</option>
+                        <option value="ordinarySeaman">Ordinary Seaman</option>
+                      </select>
+                      <label :for="`rank-${index}`">Rank</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-floating">
+                      <input type="number" class="form-control" :id="`dwt-${index}`" v-model="exp.dwt">
+                      <label :for="`dwt-${index}`">DWT (Deadweight Tonnage)</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-floating">
+                      <input type="number" class="form-control" :id="`kwh-${index}`" v-model="exp.kwh">
+                      <label :for="`kwh-${index}`">Engine Power (kWh)</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" :id="`owner-${index}`" v-model="exp.owner">
+                      <label :for="`owner-${index}`">Ship Owner/Company</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-floating">
+                      <input type="date" class="form-control" :id="`signOn-${index}`" v-model="exp.signOn" required>
+                      <label :for="`signOn-${index}`">Sign On Date</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-floating">
+                      <input type="date" class="form-control" :id="`signOff-${index}`" v-model="exp.signOff" required>
+                      <label :for="`signOff-${index}`">Sign Off Date</label>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" :id="`signOffReason-${index}`" v-model="exp.signOffReason">
+                      <label :for="`signOffReason-${index}`">Sign Off Reason</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary" @click="addExperience">
+                <i class="bi bi-plus-circle"></i> Add Sea Experience
+              </button>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid gap-2 col-md-6 mx-auto mt-4">
+              <button type="submit" class="btn btn-success btn-lg">
+                <i class="bi bi-send-check me-2"></i>Submit Application
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -303,240 +626,280 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
-import { Modal } from 'bootstrap';
+import { ref, computed } from 'vue';
 
-// Define sections
-const sections = ['Personal Data', 'Document', 'Trainings', 'Experiences'];
-const currentSection = ref(0);
-
-// Form data structure
 const formData = ref({
-  personalData: {
-    fullName: '',
-    email: '',
-    phone: '',
-    dateOfBirth: '',
-    gender: '',
-    nationality: '',
-    address: '',
-    city: '',
-    postalCode: ''
-  },
-  document: {
-    idType: '',
-    idNumber: '',
-    issueDate: '',
-    expiryDate: '',
-    documentFile: null
-  },
+  name: '',
+  birthPlace: '',
+  birthDate: '',
+  sex: true,
+  maritalStatusId: '',
+  numberOfChild: 0,
+  address: '',
+  city: '',
+  zipCode: '',
+  countryId: '',
+  phoneNo: '',
+  handPhone: '',
+  email: '',
+  religionId: '',
+  bloodType: '',
+  nationalityId: '',
+  rankToApply: '',
+  rankApplyDate: '',
+  certificateId: '',
+  certificateNo: '',
+  certificateStatusId: '',
+  certificateIssued: '',
+  certificateIssuedDate: '',
+  certificateExpiryDate: '',
+  certificateDoc: null,
+  photo: null,
+  height: '',
+  weight: '',
+  whiteShirt: '',
+  bluePants: '',
+  overall: '',
+  safetyShoes: '',
+  winterJacket: '',
+  documents: [
+    {
+      docId: '',
+      docNo: '',
+      docFile: null,
+      issued: '',
+      validDate: '',
+      expiredDate: '',
+      remark: ''
+    }
+  ],
   trainings: [
     {
-      name: '',
-      institution: '',
-      startDate: '',
-      endDate: '',
-      certificateFile: null
+      trainingId: '',
+      referenceId: '',
+      certificateNo: '',
+      validDate: '',
+      expiredDate: ''
     }
   ],
   experiences: [
     {
-      jobTitle: '',
-      company: '',
-      startDate: '',
-      endDate: '',
-      currentlyWorking: false,
-      responsibilities: ''
+      vessel: '',
+      vesselType: '',
+      flag: '',
+      tradingAreaId: '',
+      rank: '',
+      dwt: 0,
+      kwh: 0,
+      owner: '',
+      signOn: '',
+      signOff: '',
+      signOffReason: ''
     }
   ]
 });
 
-// Calculate progress percentage
-const progress = computed(() => {
-  return ((currentSection.value + 1) / sections.length) * 100;
+const positionRequirements = {
+  '2110': { cocId: ['M1', 'M2'], coc: ['D CLASS I', 'D CLASS II'] },
+  '2120': { cocId: ['M1', 'M2'], coc: ['D CLASS I', 'D CLASS II'] },
+  '2130': { cocId: ['M2', 'M3'], coc: ['D CLASS II', 'D CLASS III'] },
+  '2140': { cocId: ['M2', 'M3'], coc: ['D CLASS II', 'D CLASS III'] },
+  '2150': { cocId: ['M3', 'OT'], coc: ['D CLASS III', 'OTHER'] },
+  '2210': { cocId: ['KC', 'KB'], coc: ['E CLASS I', 'E CLASS II'] },
+  '2220': { cocId: ['KC', 'KB'], coc: ['E CLASS I', 'E CLASS II'] },
+  '2230': { cocId: ['KB', 'KA'], coc: ['E CLASS II', 'E CLASS III'] },
+  '2240': { cocId: ['KA'], coc: ['E CLASS III'] },
+  '2250': { cocId: ['KA', 'OT'], coc: ['E CLASS III', 'OTHER'] },
+  '2260': { cocId: ['ET', 'KS', 'OT'], coc: ['ETO', 'E WATCHKEEPING', 'OTHER'] },
+  '2300': { cocId: ['KD', 'OT'], coc: ['D WATCHKEEPING', 'OTHER'] },
+  '2320': { cocId: ['KD', 'OT'], coc: ['D WATCHKEEPING', 'OTHER'] },
+  '2330': { cocId: ['KD', 'OT'], coc: ['D WATCHKEEPING', 'OTHER'] },
+  '2340': { cocId: ['KS', 'OT'], coc: ['E WATCHKEEPING', 'OTHER'] },
+  '2420': { cocId: ['KS', 'OT'], coc: ['E WATCHKEEPING', 'OTHER'] },
+  '2430': { cocId: ['KS', 'OT'], coc: ['E WATCHKEEPING', 'OTHER'] },
+  '2440': { cocId: ['KS', 'OT'], coc: ['E WATCHKEEPING', 'OTHER'] },
+  '2510': { cocId: ['NA', 'OT'], coc: ['NONE', 'OTHER'] },
+  '2530': { cocId: ['NA', 'OT'], coc: ['NONE', 'OTHER'] },
+  '2560': { cocId: ['NA'], coc: ['NONE'] },
+  '2570': { cocId: ['NA'], coc: ['NONE'] },
+  '2580': { cocId: ['NA'], coc: ['NONE'] }
+};
+
+const requiredCertificates = computed(() => {
+  return positionRequirements[formData.value.rankToApply] || { cocId: [], coc: [] };
 });
 
-// Modal reference
-const successModal = ref(null);
-let bsModal = null;
+const handleFileUpload = (event, field) => {
+  formData.value[field] = event.target.files[0];
+};
 
-onMounted(() => {
-  // Initialize Bootstrap modal
-  bsModal = new Modal(successModal.value);
-});
+const handleDocFileUpload = (event, index) => {
+  formData.value.documents[index].docFile = event.target.files[0];
+};
 
-// Navigation methods
-const nextSection = () => {
-  if (currentSection.value < sections.length - 1) {
-    currentSection.value++;
-    window.scrollTo(0, 0);
+const addDocument = () => {
+  formData.value.documents.push({
+    docId: '',
+    docNo: '',
+    docFile: null,
+    issued: '',
+    validDate: '',
+    expiredDate: '',
+    remark: ''
+  });
+};
+
+const removeDocument = (index) => {
+  formData.value.documents.splice(index, 1);
+  if (formData.value.documents.length === 0) {
+    addDocument();
   }
 };
 
-const prevSection = () => {
-  if (currentSection.value > 0) {
-    currentSection.value--;
-    window.scrollTo(0, 0);
-  }
-};
-
-// Add/remove training entries
 const addTraining = () => {
   formData.value.trainings.push({
-    name: '',
-    institution: '',
-    startDate: '',
-    endDate: '',
-    certificateFile: null
+    trainingId: '',
+    referenceId: '',
+    certificateNo: '',
+    validDate: '',
+    expiredDate: ''
   });
 };
 
 const removeTraining = (index) => {
-  if (formData.value.trainings.length > 1) {
-    formData.value.trainings.splice(index, 1);
+  formData.value.trainings.splice(index, 1);
+  if (formData.value.trainings.length === 0) {
+    addTraining();
   }
 };
 
-// Add/remove experience entries
 const addExperience = () => {
   formData.value.experiences.push({
-    jobTitle: '',
-    company: '',
-    startDate: '',
-    endDate: '',
-    currentlyWorking: false,
-    responsibilities: ''
+    vessel: '',
+    vesselType: '',
+    flag: '',
+    tradingAreaId: '',
+    rank: '',
+    dwt: 0,
+    kwh: 0,
+    owner: '',
+    signOn: '',
+    signOff: '',
+    signOffReason: ''
   });
 };
 
 const removeExperience = (index) => {
-  if (formData.value.experiences.length > 1) {
-    formData.value.experiences.splice(index, 1);
+  formData.value.experiences.splice(index, 1);
+  if (formData.value.experiences.length === 0) {
+    addExperience();
   }
 };
 
-// Handle file uploads
-const handleFileUpload = (event, type, index) => {
-  const file = event.target.files[0];
-  if (!file) return;
-  
-  // Check file size (5MB limit)
-  if (file.size > 5 * 1024 * 1024) {
-    alert('File size exceeds 5MB limit');
-    event.target.value = '';
-    return;
-  }
-  
-  if (type === 'document') {
-    formData.value.document.documentFile = file;
-  } else if (type === 'training' && index !== undefined) {
-    formData.value.trainings[index].certificateFile = file;
-  }
-};
-
-// Form submission
 const submitForm = () => {
   // Here you would typically send the form data to your backend
   console.log('Form submitted:', formData.value);
-  
-  // Show success modal
-  bsModal.show();
-  
-  // Reset form after submission (optional)
-  // resetForm();
-};
-
-// Reset form (optional)
-const resetForm = () => {
-  formData.value = {
-    personalData: {
-      fullName: '',
-      email: '',
-      phone: '',
-      dateOfBirth: '',
-      gender: '',
-      nationality: '',
-      address: '',
-      city: '',
-      postalCode: ''
-    },
-    document: {
-      idType: '',
-      idNumber: '',
-      issueDate: '',
-      expiryDate: '',
-      documentFile: null
-    },
-    trainings: [
-      {
-        name: '',
-        institution: '',
-        startDate: '',
-        endDate: '',
-        certificateFile: null
-      }
-    ],
-    experiences: [
-      {
-        jobTitle: '',
-        company: '',
-        startDate: '',
-        endDate: '',
-        currentlyWorking: false,
-        responsibilities: ''
-      }
-    ]
-  };
-  currentSection.value = 0;
+  alert('Application submitted successfully!');
+  // You could also reset the form or redirect the user
 };
 </script>
 
-<style>
-/* Import Bootstrap CSS */
-@import 'bootstrap/dist/css/bootstrap.min.css';
-/*@import 'bootstrap-icons/font/bootstrap-icons.css';
-*/
-
-/* Custom styles */
-.section-content {
-  animation: fadeIn 0.3s ease-in-out;
+<style scoped>
+.maritime-form-container {
+  background-color: #f0f8ff;
+  min-height: 100vh;
+  background-image: url('https://img.freepik.com/free-photo/container-cargo-freight-ship-with-working-crane-bridge-shipyard-twilight-sky_44353-2505.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+.maritime-form-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.85);
+  z-index: 0;
 }
 
-.form-label {
-  font-weight: 500;
+.container {
+  position: relative;
+  z-index: 1;
 }
 
 .card {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card-header {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  padding: 1.5rem;
+}
+
+.section-container {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  color: #1e3c72;
+  border-bottom: 2px solid #1e3c72;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.document-item, .training-item, .experience-item {
+  background-color: #fff;
   transition: all 0.3s ease;
 }
 
-.card:hover {
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+.document-item:hover, .training-item:hover, .experience-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.nav-tabs .nav-link {
-  color: #6c757d;
-  font-weight: 500;
+.btn-primary {
+  background-color: #1e3c72;
+  border-color: #1e3c72;
 }
 
-.nav-tabs .nav-link.active {
-  color: #0d6efd;
-  font-weight: 600;
+.btn-primary:hover {
+  background-color: #2a5298;
+  border-color: #2a5298;
 }
 
-/* Responsive adjustments */
+.btn-success {
+  background: linear-gradient(135deg, #1e8449 0%, #27ae60 100%);
+  border: none;
+  font-weight: bold;
+  padding: 12px 24px;
+  transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(39, 174, 96, 0.3);
+}
+
 @media (max-width: 768px) {
-  .card-header h2 {
-    font-size: 1.5rem;
+  .card-header {
+    padding: 1rem;
   }
   
-  h3 {
-    font-size: 1.3rem;
+  .section-container {
+    padding: 1rem;
+  }
+  
+  .btn-success {
+    padding: 10px 20px;
   }
 }
 </style>
+
