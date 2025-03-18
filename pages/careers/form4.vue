@@ -111,10 +111,9 @@
                       <div class="col-md-6">
                         <label for="maritalStatusId" class="form-label">Marital Status</label>
                         <select class="form-select" id="maritalStatusId" v-model="formData.maritalStatusId" required>
-                          <option value="single">Single</option>
-                          <option value="married">Married</option>
-                          <option value="divorced">Divorced</option>
-                          <option value="widowed">Widowed</option>
+                          <option value="1">Single</option>
+                          <option value="2">Married</option>
+                          <option value="3">Spouse</option>
                         </select>
                       </div>
                       <div class="col-md-6">
@@ -124,12 +123,13 @@
                       <div class="col-md-6">
                         <label for="religionId" class="form-label">Religion</label>
                         <select class="form-select" id="religionId" v-model="formData.religionId">
-                          <option value="islam">Islam</option>
-                          <option value="christian">Christian</option>
-                          <option value="catholic">Catholic</option>
-                          <option value="hindu">Hinduism</option>
-                          <option value="buddhist">Buddhist</option>
-                          <option value="other">Other</option>
+                          <option value="R01">Moslem</option>
+                          <option value="R02">Catholic</option>
+                          <option value="R03">Christian</option>
+                          <option value="R04">Hinduism</option>
+                          <option value="R05">Buddhist</option>
+                          <option value="R06">Orthodox</option>
+                          <option value="R07">Other</option>
                         </select>
                       </div>
                       <div class="col-md-6">
@@ -139,14 +139,6 @@
                           <option value="B">B</option>
                           <option value="AB">AB</option>
                           <option value="O">O</option>
-                          <option value="A+">A+</option>
-                          <option value="A-">A-</option>
-                          <option value="B+">B+</option>
-                          <option value="B-">B-</option>
-                          <option value="AB+">AB+</option>
-                          <option value="AB-">AB-</option>
-                          <option value="O+">O+</option>
-                          <option value="O-">O-</option>
                         </select>
                       </div>
                       <!-- <div class="col-md-6">
@@ -175,6 +167,31 @@
                           <input class="form-check-input" type="checkbox" id="isElementary" v-model="formData.isElementary">
                           <label class="form-check-label" for="isElementary">Elementary</label>
                         </div>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="rank" class="form-label">Rank</label>
+                        <select class="form-select" id="rank" v-model="formData.rank" required>
+                          <option value="2210">MASTER</option>
+                          <option value="2110">CHIEF OFFICER</option>
+                          <option value="2120">SECOND OFFICER</option>
+                          <option value="2130">THIRD OFFICER</option>
+                          <option value="2140">SENIOR DECK CADET</option>
+                          <option value="2150">CHIEF ENGINEER</option>
+                          <option value="2220">SECOND ENGINEER</option>
+                          <option value="2230">THIRD ENGINEER</option>
+                          <option value="2240">FOURTH ENGINEER</option>
+                          <option value="2250">SENIOR ENGINE CADET</option>
+                          <option value="2260">ELECTRICIAN</option>
+                          <option value="2440">PUMPMAN</option>
+                          <option value="2510">SAILOR</option>
+                          <option value="2530">Q/MASTER</option>
+                          <option value="2300">BOSUN</option>
+                          <option value="2320">OILER</option>
+                          <option value="2330">WIPER</option>
+                          <option value="2340">FITTER</option>
+                          <option value="2420">CHIEF COOK</option>
+                          <option value="2430">MESS BOY</option>
+                        </select>
                       </div>
                     </div>
                   </div>
@@ -220,10 +237,23 @@
                       <div class="col-md-6">
                         <label for="nationalityId" class="form-label">Nationality</label>
                         <select class="form-select" id="nationalityId" v-model="formData.nationalityId" required>
-                          <option value="id">Indonesian</option>
-                          <option value="sg">Singaporean</option>
-                          <option value="my">Malaysian</option>
-                          <option value="ph">Filipino</option>
+                          <option value="">Select Nationality</option>
+                          <option value="IDN">Indonesian</option>
+                          <option value="AUS">Australian</option>
+                          <option value="BGD">Bangladeshi</option>
+                          <option value="BHS">Bahamian</option>
+                          <option value="CHN">Chinese</option>
+                          <option value="GBR">British</option>
+                          <option value="IND">Indian</option>
+                          <option value="JPN">Japanese</option>
+                          <option value="KOR">Korean</option>
+                          <option value="MYS">Malaysian</option>
+                          <option value="PHL">Filipino</option>
+                          <option value="SGP">Singaporean</option>
+                          <option value="THA">Thai</option>
+                          <option value="USA">American</option>
+                          <option value="VNM">Vietnamese</option>
+                          <!-- Add more options as needed -->
                         </select>
                       </div>
                     </div>
@@ -241,12 +271,17 @@
                       <div class="col-md-6">
                         <label for="relationship" class="form-label">Relationship</label>
                         <select class="form-select" id="relationship" v-model="formData.relationship">
-                          <option value="father">Father</option>
-                          <option value="mother">Mother</option>
-                          <option value="spouse">Spouse</option>
-                          <option value="child">Child</option>
-                          <option value="sibling">Sibling</option>
-                          <option value="other">Other</option>
+                          <option value="K00">Father</option>
+                          <option value="K01">Mother</option>
+                          <option value="K02">Wife</option>
+                          <option value="K03">Husband</option>
+                          <option value="K04">Son</option>
+                          <option value="K05">Daughter</option>
+                          <option value="K06">Brother</option>
+                          <option value="K07">Sister</option>
+                          <option value="K08">Uncle</option>
+                          <option value="K09">Aunty</option>
+                          <option value="K10">Other</option>
                         </select>
                       </div>
                       <div class="col-md-12">
@@ -353,11 +388,16 @@
                           <div class="flex">
                             <p>COC Type</p>
                             <select class="form-select" v-model="formData.cocType">
-                              <option value="CLASS I">CLASS I</option>
-                              <option value="CLASS II">CLASS II</option>
-                              <option value="CLASS III">CLASS III</option>
-                              <option value="CLASS IV">CLASS IV</option>
-                              <option value="CLASS V">CLASS V</option>
+                              <option value="M1D">CLASS I (M1D)</option>
+                              <option value="M2D">CLASS II (M2D)</option>
+                              <option value="M3D">CLASS III (M3D)</option>
+                              <option value="KCE">CLASS I (KCE)</option>
+                              <option value="KBE">CLASS II (KBE)</option>
+                              <option value="KAE">CLASS III (KAE)</option>
+                              <option value="ET">ETO</option>
+                              <option value="KSE">WATCHKEEPING (KSE)</option>
+                              <option value="KDD">WATCHKEEPING (KDD)</option>
+                              <option value="OT">OTHER</option>
                             </select>
                           </div>
                         </td>
@@ -596,7 +636,7 @@
                     </thead>
                     <tbody>
                       <tr v-for="(training, index) in formData.standardTrainings" :key="`std-${index}`">
-                        <td>{{ training.trainingType }}</td>
+                        <td>{{ training.name }}</td>
                         <td><input type="text" class="form-control" v-model="training.qualificationNo"></td>
                         <td><input type="date" class="form-control" v-model="training.issuedDate"></td>
                         <td><input type="date" class="form-control" v-model="training.expiredDate"></td>
@@ -690,21 +730,27 @@
                         <th style="width:6rem;">KWH</th>
                         <th>Sign On</th>
                         <th>Sign Off</th>
+                        <th>Actions</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr v-for="(exp, index) in formData.experiences" :key="index">
                         <td><input type="text" class="form-control" v-model="exp.vessel"></td>
-                        <td><select class="form-select" v-model="exp.rank">
-                            <option value="bulkCarrier">Bulk Carrier</option>
-                            <option value="container">Container Ship</option>
-                            <option value="tanker">Tanker</option>
-                            <option value="lpg">LPG Carrier</option>
-                            <option value="lng">LNG Carrier</option>
-                            <option value="roro">Ro-Ro</option>
-                            <option value="passenger">Passenger Ship</option>
-                            <option value="generalCargo">General Cargo</option>
-                          </select></td>
+                        <td>
+                          <select class="form-select" v-model="exp.rank">
+                            <option value="captain">Captain</option>
+                            <option value="chiefOfficer">Chief Officer</option>
+                            <option value="secondOfficer">Second Officer</option>
+                            <option value="thirdOfficer">Third Officer</option>
+                            <option value="chiefEngineer">Chief Engineer</option>
+                            <option value="secondEngineer">Second Engineer</option>
+                            <option value="thirdEngineer">Third Engineer</option>
+                            <option value="fourthEngineer">Fourth Engineer</option>
+                            <option value="bosun">Bosun</option>
+                            <option value="abSeaman">AB Seaman</option>
+                            <option value="ordinarySeaman">Ordinary Seaman</option>
+                          </select>
+                        </td>
                         <td>
                           <select class="form-select" v-model="exp.vesselType">
                             <option value="bulkCarrier">Bulk Carrier</option>
@@ -742,6 +788,11 @@
                         <td><input type="number" class="form-control" v-model="exp.kwh"></td>
                         <td><input type="date" class="form-control" v-model="exp.signOn"></td>
                         <td><input type="date" class="form-control" v-model="exp.signOff"></td>
+                        <td>
+                          <button type="button" class="btn btn-danger btn-sm" @click="removeExperience(index)">
+                            <i class="bi bi-trash"></i>
+                          </button>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -941,6 +992,7 @@ const formData = reactive({
   nextOfKinPhone: '',
   relationship: '',
   isElementary: false,
+  rank: '',
   
   // New fields for Documents
   cocType: '',
@@ -987,129 +1039,31 @@ const formData = reactive({
     expiredDate: ''
   },
   
-  // New fields for Trainings
+  // New fields for Trainings - Updated based on PDF
   standardTrainings: [
-    {
-      trainingType: 'GMDSS',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'Ship Handling',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'Bridge Team Management',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'Medical First Aid',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'Medical Care',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'Survival Craft & Rescue Boat',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'Advanced Fire Fighting',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'Advanced Specialization Oil Tanker Safety',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'Electronic Navigation System Competence for Deck Officer',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'NCC For Deck Officer',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'PSSR',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'DCE (Oil)',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'DCE (Chemical)',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'DCE ()',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'Bridge Team Management',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'Engine Team Management',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'ISM Code Familiarization',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'Risk Assessment',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'Ship Safety Official Certificat (Compulsory for Master & Chief)',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'Ship Security Officer Certificate (Compulsory for Master)',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    }
-    
+    { trainingType: 'TN000', name: 'BASIC SAFETY TRAINING (Reg.VI/1-4)', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingType: 'TN001', name: 'Advanced Fire Fighting (Reg. VI/3)', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingType: 'TN016', name: 'Adv training for chemical tanker cargo operations (Table A-V/1-1-3)', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingType: 'TN017', name: 'Adv training for oil tanker cargo operations (Table A-V/1-1-2)', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingType: 'TN089', name: 'GMDSS COURSE', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingType: 'TN018', name: 'GMDSS - ENDORSEMENT', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingType: 'TN022', name: 'SURVIVAL CRAFT & RESCUE BOAT', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingType: 'TN035', name: 'Adv training for gas tanker cargo operations (Table A-V/1-2-2)', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingType: 'TN302', name: 'BRIDGE RESOURCE MANAGEMENT (BRM) (Table A-II/1)', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingType: 'TN324', name: 'FOOD HANDLING CERT', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingType: 'TN374', name: 'ENGINE RESOURCE MANAGEMENT (ERM) (Table A-III/1)', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingType: 'TN082', name: 'RISK MANAGEMENT TRAINING', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingType: 'TN083', name: 'DANGEROUS CARGO ENDORSEMENTS - PETROLEUM', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingType: 'TN096', name: 'DANGEROUS CARGO ENDORSEMENTS - CHEMICAL', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingType: 'TN097', name: 'DANGEROUS ENDORSEMENTS GAS', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingType: 'TN238', name: 'BASIC SEA SURVIVAL (BSS)', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingType: 'TN023', name: 'MEDICAL FIRST AID', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingType: 'TN024', name: 'MEDICAL CARE', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingType: 'TN025', name: 'BRIDGE TEAM MANAGEMENT', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingType: 'TN028', name: 'ISM-CODE', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingType: 'TN019', name: 'TANKER FAMILIARIZATION', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingType: 'TN005', name: 'NCC', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingType: 'TN015', name: 'SHIP HANDLING & MANEUVERING COURSE', qualificationNo: '', issuedDate: '', expiredDate: '' },
   ],
   
   stcwTrainings: [
@@ -1201,6 +1155,7 @@ const formData = reactive({
       kwh: 0,
       grt: 0,
       owner: '',
+      company: '',
       signOn: '',
       signOff: '',
       signOffReason: ''
@@ -1216,7 +1171,7 @@ onMounted(() => {
   
   // Parse URL query parameters
   const urlParams = new URLSearchParams(window.location.search);
-  const applyParam = urlParams.get('apply').toString();
+  const applyParam = urlParams.get('apply')?.toString();
   if (applyParam) {
     // Map the URL parameter to the corresponding value in the dropdown
     const rankMap = {
@@ -1234,11 +1189,6 @@ onMounted(() => {
       'AB Seaman': 'abSeaman',
       'Ordinary Seaman': 'ordinarySeaman'
     };
-    // console.log('Mapped rank:', rankMap[applyParam]);
-    // console.log('Mapped rank:', rankMap["Captain"]);
-    
-    // console.log('URL parameter:', applyParam);
-    // console.log('Mapped rank:', "Captain" == applyParam);
     
     // Try to match exactly, then try case-insensitive match
     if (rankMap[applyParam]) {
@@ -1309,6 +1259,14 @@ const handleFileUpload = (event, field) => {
   formData[field] = event.target.files[0];
 };
 
+const handlePassportUpload = (event) => {
+  formData.passport.file = event.target.files[0];
+};
+
+const handleSeamenBookUpload = (event) => {
+  formData.seamen.file = event.target.files[0];
+};
+
 const handleDocFileUpload = (event, index) => {
   formData.documents[index].docFile = event.target.files[0];
 };
@@ -1360,6 +1318,7 @@ const addExperience = () => {
     kwh: 0,
     grt: 0,
     owner: '',
+    company: '',
     signOn: '',
     signOff: '',
     signOffReason: ''
