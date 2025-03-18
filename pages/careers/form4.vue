@@ -742,17 +742,30 @@
                         <td><input type="text" class="form-control" v-model="exp.vessel"></td>
                         <td>
                           <select class="form-select" v-model="exp.rank">
-                            <option value="captain">Captain</option>
-                            <option value="chiefOfficer">Chief Officer</option>
-                            <option value="secondOfficer">Second Officer</option>
-                            <option value="thirdOfficer">Third Officer</option>
-                            <option value="chiefEngineer">Chief Engineer</option>
-                            <option value="secondEngineer">Second Engineer</option>
-                            <option value="thirdEngineer">Third Engineer</option>
-                            <option value="fourthEngineer">Fourth Engineer</option>
-                            <option value="bosun">Bosun</option>
-                            <option value="abSeaman">AB Seaman</option>
-                            <option value="ordinarySeaman">Ordinary Seaman</option>
+                            <option value="MASTER">MASTER</option>
+                            <option value="SECOND OFFICER">SECOND OFFICER</option>
+                            <option value="THIRD OFFICER">THIRD OFFICER</option>
+                            <option value="SENIOR DECK CADET">SENIOR DECK CADET</option>
+                            <option value="CHIEF ENGINEER">CHIEF ENGINEER</option>
+                            <option value="SECOND ENGINEER">SECOND ENGINEER</option>
+                            <option value="THIRD ENGINEER">THIRD ENGINEER</option>
+                            <option value="FOURTH ENGINEER">FOURTH ENGINEER</option>
+                            <option value="SENIOR ENGINE CADET">SENIOR ENGINE CADET</option>
+                            <option value="ELECTRICIAN">ELECTRICIAN</option>
+                            <option value="CADET ELECTRICIAN">CADET ELECTRICIAN</option>
+                            <option value="CADET NAUTIC">CADET NAUTIC</option>
+                            <option value="CADET TEHNIK">CADET TEHNIK</option>
+                            <option value="MESS BOY">MESS BOY</option>
+                            <option value="CHIEF COOK">CHIEF COOK</option>
+                            <option value="FITTER">FITTER</option>
+                            <option value="WIPER">WIPER</option>
+                            <option value="OILER">OILER</option>
+                            <option value="BOSUN">BOSUN</option>
+                            <option value="SAILOR">SAILOR</option>
+                            <option value="Q/MASTER">Q/MASTER</option>
+                            <option value="PUMPMAN">PUMPMAN</option>
+                            <option value="AB Seaman">AB Seaman</option>
+                            <option value="Ordinary Seaman">Ordinary Seaman</option>
                           </select>
                         </td>
                         <td>
