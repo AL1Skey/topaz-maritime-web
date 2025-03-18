@@ -49,17 +49,30 @@
                   <div class="col-md-6">
                     <label for="rankToApply" class="form-label">Rank to Apply</label>
                     <select class="form-select" id="rankToApply" disabled="true" v-model="formData.rankToApply" required>
-                      <option value="captain">Captain</option>
-                      <option value="chiefOfficer">Chief Officer</option>
-                      <option value="secondOfficer">Second Officer</option>
-                      <option value="thirdOfficer">Third Officer</option>
-                      <option value="chiefEngineer">Chief Engineer</option>
-                      <option value="secondEngineer">Second Engineer</option>
-                      <option value="thirdEngineer">Third Engineer</option>
-                      <option value="fourthEngineer">Fourth Engineer</option>
-                      <option value="bosun">Bosun</option>
-                      <option value="abSeaman">AB Seaman</option>
-                      <option value="ordinarySeaman">Ordinary Seaman</option>
+                    <option value="MASTER">MASTER</option>
+                    <option value="SECOND OFFICER">SECOND OFFICER</option>
+                    <option value="THIRD OFFICER">THIRD OFFICER</option>
+                    <option value="SENIOR DECK CADET">SENIOR DECK CADET</option>
+                    <option value="CHIEF ENGINEER">CHIEF ENGINEER</option>
+                    <option value="SECOND ENGINEER">SECOND ENGINEER</option>
+                    <option value="THIRD ENGINEER">THIRD ENGINEER</option>
+                    <option value="FOURTH ENGINEER">FOURTH ENGINEER</option>
+                    <option value="SENIOR ENGINE CADET">SENIOR ENGINE CADET</option>
+                    <option value="ELECTRICIAN">ELECTRICIAN</option>
+                    <option value="CADET ELECTRICIAN">CADET ELECTRICIAN</option>
+                    <option value="CADET NAUTIC">CADET NAUTIC</option>
+                    <option value="CADET TEHNIK">CADET TEHNIK</option>
+                    <option value="MESS BOY">MESS BOY</option>
+                    <option value="CHIEF COOK">CHIEF COOK</option>
+                    <option value="FITTER">FITTER</option>
+                    <option value="WIPER">WIPER</option>
+                    <option value="OILER">OILER</option>
+                    <option value="BOSUN">BOSUN</option>
+                    <option value="SAILOR">SAILOR</option>
+                    <option value="Q/MASTER">Q/MASTER</option>
+                    <option value="PUMPMAN">PUMPMAN</option>
+                    <option value="AB Seaman">AB Seaman</option>
+                    <option value="Ordinary Seaman">Ordinary Seaman</option>
                     </select>
                   </div>
                   <div class="col-md-6">
@@ -385,21 +398,12 @@
                     <tbody>
                       <tr>
                         <td>
-                          <div class="flex">
-                            <p>COC Type</p>
-                            <select class="form-select" v-model="formData.cocType">
-                              <option value="M1D">CLASS I (M1D)</option>
-                              <option value="M2D">CLASS II (M2D)</option>
-                              <option value="M3D">CLASS III (M3D)</option>
-                              <option value="KCE">CLASS I (KCE)</option>
-                              <option value="KBE">CLASS II (KBE)</option>
-                              <option value="KAE">CLASS III (KAE)</option>
-                              <option value="ET">ETO</option>
-                              <option value="KSE">WATCHKEEPING (KSE)</option>
-                              <option value="KDD">WATCHKEEPING (KDD)</option>
-                              <option value="OT">OTHER</option>
-                            </select>
-                          </div>
+                            <div class="flex">
+                                <p>COC Type</p>
+                                <select class="form-select" v-model="formData.cocType">
+                                <option v-for="option in cocOptions" :value="option.value">{{ option.text }}</option>
+                                </select>
+                            </div>
                         </td>
                         <td >
                           <input style="transform:translateY(1.2rem)" type="text" class="form-control" v-model="formData.docNo">
@@ -1175,19 +1179,29 @@ onMounted(() => {
   if (applyParam) {
     // Map the URL parameter to the corresponding value in the dropdown
     const rankMap = {
-      'Captain': 'captain',
-      'Chief Officer': 'chiefOfficer',
-      'Second Officer': 'secondOfficer',
-      'Third Officer': 'thirdOfficer',
-      'Fourth Officer': 'fourthEngineer',
-      'Chief Engineer': 'chiefEngineer',
-      'Second Engineer': 'secondEngineer',
-      'Third Engineer': 'thirdEngineer',
-      'Fourth Engineer': 'fourthEngineer',
-      'Engineer': 'chiefEngineer', // Default to Chief Engineer if just "Engineer" is specified
-      'Bosun': 'bosun',
-      'AB Seaman': 'abSeaman',
-      'Ordinary Seaman': 'ordinarySeaman'
+      'MASTER': 'MASTER',
+      'CHIEF OFFICER': 'CHIEF OFFICER',
+      'SECOND OFFICER': 'SECOND OFFICER',
+      'THIRD OFFICER': 'THIRD OFFICER',
+      'SENIOR DECK CADET': 'SENIOR DECK CADET',
+      'CHIEF ENGINEER': 'CHIEF ENGINEER',
+      'SECOND ENGINEER': 'SECOND ENGINEER',
+      'THIRD ENGINEER': 'THIRD ENGINEER',
+      'FOURTH ENGINEER': 'FOURTH ENGINEER',
+      'SENIOR ENGINE CADET': 'SENIOR ENGINE CADET',
+      'ELECTRICIAN': 'ELECTRICIAN',
+      'PUMPMAN': 'PUMPMAN',
+      'Q/MASTER': 'Q/MASTER',
+      'SAILOR': 'SAILOR',
+      'BOSUN': 'BOSUN',
+      'OILER': 'OILER',
+      'WIPER': 'WIPER',
+      'FITTER': 'FITTER',
+      'CHIEF COOK': 'CHIEF COOK',
+      'MESS BOY': 'MESS BOY',
+      'CADET TEHNIK': 'CADET TEHNIK',
+      'CADET NAUTIC': 'CADET NAUTIC',
+      'CADET ELECTRICIAN': 'CADET ELECTRICIAN'
     };
     
     // Try to match exactly, then try case-insensitive match
@@ -1338,6 +1352,127 @@ const submitForm = () => {
   alert('Application submitted successfully!');
   // You could also reset the form or redirect the user
 };
+
+const cocOptions = computed(() => {
+    switch (formData.rankToApply) {
+        case 'MASTER': // MASTER
+            return [
+            { value: 'M1', text: 'D CLASS I' },
+            { value: 'M2', text: 'D CLASS II' }
+            ];
+        case 'CHIEF OFFICER': // CHIEF OFFICER
+            return [
+            { value: 'M1', text: 'D CLASS I' },
+            { value: 'M2', text: 'D CLASS II' }
+            ];
+        case 'SECOND OFFICER': // SECOND OFFICER
+            return [
+            { value: 'M2', text: 'D CLASS II' },
+            { value: 'M3', text: 'D CLASS III' }
+            ];
+        case 'THIRD OFFICER': // THIRD OFFICER
+            return [
+            { value: 'M2', text: 'D CLASS II' },
+            { value: 'M3', text: 'D CLASS III' }
+            ];
+        case 'SENIOR DECK CADET': // SENIOR DECK CADET
+            return [
+            { value: 'M3', text: 'D CLASS III' },
+            { value: 'OT', text: 'OTHER' }
+            ];
+        case 'CHIEF ENGINEER': // CHIEF ENGINEER
+            return [
+            { value: 'KC', text: 'E CLASS I' },
+            { value: 'KB', text: 'E CLASS II' }
+            ];
+        case 'SECOND ENGINEER': // SECOND ENGINEER
+            return [
+            { value: 'KC', text: 'E CLASS I' },
+            { value: 'KB', text: 'E CLASS II' }
+            ];
+        case 'THIRD ENGINEER': // THIRD ENGINEER
+            return [
+            { value: 'KB', text: 'E CLASS II' },
+            { value: 'KA', text: 'E CLASS III' }
+            ];
+        case 'FOURTH ENGINEER': // FOURTH ENGINEER
+            return [
+            { value: 'KB', text: 'E CLASS II' },
+            { value: 'KA', text: 'E CLASS III' }
+            ];
+        case 'SENIOR ENGINE CADET': // SENIOR ENGINE CADET
+            return [
+            { value: 'KA', text: 'E CLASS III' },
+            { value: 'OT', text: 'OTHER' }
+            ];
+        case 'ELECTRICIAN': // ELECTRICIAN
+            return [
+            { value: 'ET', text: 'ETO' },
+            { value: 'KS', text: 'E WATCHKEEPING' },
+            { value: 'OT', text: 'OTHER' }
+            ];
+        case 'PUMPMAN': // PUMPMAN
+            return [
+            { value: 'KD', text: 'D WATCHKEEPING' },
+            { value: 'OT', text: 'OTHER' }
+            ];
+        case 'Q/MASTER': // Q/MASTER
+            return [
+            { value: 'KD', text: 'D WATCHKEEPING' },
+            { value: 'OT', text: 'OTHER' }
+            ];
+        case 'SAILOR': // SAILOR
+            return [
+            { value: 'KD', text: 'D WATCHKEEPING' },
+            { value: 'OT', text: 'OTHER' }
+            ];
+        case 'BOSUN': // BOSUN
+            return [
+            { value: 'KS', text: 'E WATCHKEEPING' },
+            { value: 'OT', text: 'OTHER' }
+            ];
+        case 'OILER': // OILER
+            return [
+            { value: 'KS', text: 'E WATCHKEEPING' },
+            { value: 'OT', text: 'OTHER' }
+            ];
+        case 'WIPER': // WIPER
+            return [
+            { value: 'KS', text: 'E WATCHKEEPING' },
+            { value: 'OT', text: 'OTHER' }
+            ];
+        case 'FITTER': // FITTER
+            return [
+            { value: 'KS', text: 'E WATCHKEEPING' },
+            { value: 'OT', text: 'OTHER' }
+            ];
+        case 'CHIEF COOK': // CHIEF COOK
+            return [
+            { value: 'NA', text: 'NONE' },
+            { value: 'OT', text: 'OTHER' }
+            ];
+        case 'MESS BOY': // MESS BOY
+            return [
+            { value: 'NA', text: 'NONE' },
+            { value: 'OT', text: 'OTHER' }
+            ];
+        case 'CADET TEHNIK': // CADET TEHNIK
+            return [
+            { value: 'NA', text: 'NONE' }
+            ];
+        case 'CADET NAUTIC': // CADET NAUTIC
+            return [
+            { value: 'NA', text: 'NONE' }
+            ];
+        case 'CADET ELECTRICIAN': // CADET ELECTRICIAN
+            return [
+            { value: 'NA', text: 'NONE' }
+            ];
+        default:
+            return [];
+    }
+});
+
 </script>
 
 <style scoped>

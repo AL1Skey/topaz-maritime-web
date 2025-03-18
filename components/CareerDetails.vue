@@ -60,7 +60,7 @@ defineProps({
                             </div>
                         </div>
                         <!-- Blog Details cntent End -->
-                        <a :href="`/careers/form3?apply=${job?.job_category.name.toLowerCase()}`" class="btn btn-primary">Apply </a>
+                        <a :href="`/careers/form4?apply=${job?.job_category.name.toLowerCase()}`" class="btn btn-primary">Apply </a>
                     </div>
                 </div>
             </div>
