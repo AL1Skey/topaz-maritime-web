@@ -53,6 +53,6 @@ export default defineNuxtConfig({
           ],
     },
 
-    plugins: ["@/plugins/aos"],
+    plugins: ["@/plugins/aos","@/plugins/pinia"],
     modules: [],
 })

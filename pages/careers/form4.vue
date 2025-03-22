@@ -154,13 +154,6 @@
                           <option value="O">O</option>
                         </select>
                       </div>
-                      <!-- <div class="col-md-6">
-                        <label for="manningAgent" class="form-label">Manning Agent</label>
-                        <select class="form-select" id="manningAgent" v-model="formData.manningAgent">
-                          <option value="PT TOKIO MARITIME">PT TOKIO MARITIME</option>
-                          <option value="other">Other</option>
-                        </select>
-                      </div> -->
                       <div class="col-md-6">
                         <label for="weight" class="form-label">Weight (kg)</label>
                         <div class="input-group">
@@ -244,8 +237,8 @@
                         <input type="tel" class="form-control" id="handPhone" v-model="formData.handPhone" required>
                       </div>
                       <div class="col-md-6">
-                        <label for="handPhone" class="form-label">Email Address</label>
-                        <input type="tel" class="form-control" id="handPhone" v-model="formData.email" required>
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="email" v-model="formData.email" required>
                       </div>
                       <div class="col-md-6">
                         <label for="nationalityId" class="form-label">Nationality</label>
@@ -266,7 +259,6 @@
                           <option value="THA">Thai</option>
                           <option value="USA">American</option>
                           <option value="VNM">Vietnamese</option>
-                          <!-- Add more options as needed -->
                         </select>
                       </div>
                     </div>
@@ -316,64 +308,6 @@
                     </div>
                   </div>
                 </div>
-                
-                <!-- <div class="col-md-4">
-                  <div class="section-container mb-4">
-                    <h4 class="section-title">
-                      <i class="bi bi-file-earmark-person me-2"></i>Photo & Documents
-                    </h4>
-                    <div class="text-center mb-4">
-                      <div class="photo-upload-container">
-                        <div v-if="photoPreview" class="photo-preview">
-                          <img :src="photoPreview" alt="Candidate Photo" class="img-fluid rounded">
-                        </div>
-                        <div v-else class="photo-placeholder">
-                          <i class="bi bi-person-circle"></i>
-                        </div>
-                        <div class="mt-2">
-                          <button type="button" class="btn btn-outline-primary btn-sm" @click="triggerPhotoUpload">
-                            Upload Photo
-                          </button>
-                          <p class="text-muted small mt-1">JPG, PNG (Max. 2MB)</p>
-                          <input type="file" ref="photoInput" class="d-none" @change="handlePhotoUpload" accept="image/*">
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div class="certificate-upload-container text-center">
-                      <div v-if="certificatePreview" class="certificate-preview">
-                        <i class="bi bi-file-earmark-check"></i>
-                        <p class="mb-0">{{ formData.certificateDoc?.name || 'Certificate uploaded' }}</p>
-                      </div>
-                      <div v-else class="certificate-placeholder">
-                        <i class="bi bi-file-earmark-text"></i>
-                      </div>
-                      <div class="mt-2">
-                        <button type="button" class="btn btn-outline-primary btn-sm" @click="triggerCertificateUpload">
-                          Upload Certificate
-                        </button>
-                        <p class="text-muted small mt-1">PDF, DOC (Max. 5MB)</p>
-                        <input type="file" ref="certificateInput" class="d-none" @change="handleCertificateUpload" accept=".pdf,.doc,.docx">
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div class="section-container mb-4">
-                    <h4 class="section-title">
-                      <i class="bi bi-rulers me-2"></i>Physical Information
-                    </h4>
-                    <div class="row g-3">
-                      <div class="col-md-6">
-                        <label for="height" class="form-label">Height (cm)</label>
-                        <input type="text" class="form-control" id="height" v-model="formData.height">
-                      </div>
-                      <div class="col-md-6">
-                        <label for="weight" class="form-label">Weight (kg)</label>
-                        <input type="text" class="form-control" id="weight" v-model="formData.weight">
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
               </div>
             </div>
 
@@ -415,7 +349,7 @@
                       <tr>
                         <td>
                           <p>Passport</p>
-                          <input type="file" @change="handlePassportUpload" accept="pdf/*">
+                          <input type="file" name="passportFile" @change="handlePassportUpload" accept="application/pdf,image/*">
                         </td>
                         <td><input style="transform:translateY(1.2rem)" type="text" class="form-control" v-model="formData.passport.docNo"></td>
                         <td><input style="transform:translateY(1.2rem)" type="text" class="form-control" v-model="formData.passport.issued"></td>
@@ -425,7 +359,7 @@
                       <tr>
                         <td>
                           <p>Seamen Book</p>
-                          <input type="file" @change="handleSeamenBookUpload" accept="pdf/*">
+                          <input type="file" name="seamenBookFile" @change="handleSeamenBookUpload" accept="application/pdf,image/*">
                         </td>
                         <td><input style="transform:translateY(1.2rem)" type="text" class="form-control" v-model="formData.seamen.docNo"></td>
                         <td><input style="transform:translateY(1.2rem)" type="text" class="form-control" v-model="formData.seamen.issued"></td>
@@ -470,154 +404,33 @@
                     </tbody>
                   </table>
                 </div>
-                
-                <!-- <div class="row mb-4">
-                  <div class="col-md-6">
-                    <div class="mb-3">
-                      <label for="certificateId" class="form-label">Certificate Type</label>
-                      <select class="form-select" id="certificateId" v-model="formData.certificateId">
-                        <option value="coc">Certificate of Competency (COC)</option>
-                        <option value="goc">General Operator Certificate (GOC)</option>
-                        <option value="stcw">STCW Certificate</option>
-                      </select>
-                    </div>
-                    <div class="mb-3">
-                      <label for="certificateNo" class="form-label">Certificate Number</label>
-                      <input type="text" class="form-control" id="certificateNo" v-model="formData.certificateNo">
-                    </div>
-                    <div class="mb-3">
-                      <label for="certificateStatusId" class="form-label">Certificate Status</label>
-                      <select class="form-select" id="certificateStatusId" v-model="formData.certificateStatusId">
-                        <option value="valid">Valid</option>
-                        <option value="expired">Expired</option>
-                        <option value="pending">Pending</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="mb-3">
-                      <label for="certificateIssued" class="form-label">Certificate Issued By</label>
-                      <input type="text" class="form-control" id="certificateIssued" v-model="formData.certificateIssued">
-                    </div>
-                    <div class="mb-3">
-                      <label for="certificateIssuedDate" class="form-label">Certificate Issue Date</label>
-                      <input type="date" class="form-control" id="certificateIssuedDate" v-model="formData.certificateIssuedDate">
-                    </div>
-                    <div class="mb-3">
-                      <label for="certificateExpiryDate" class="form-label">Certificate Expiry Date</label>
-                      <input type="date" class="form-control" id="certificateExpiryDate" v-model="formData.certificateExpiryDate">
-                    </div>
-                  </div>
-                </div>
-                
-                <h5 class="mb-3">Additional Documents</h5>
-                <div v-for="(doc, index) in formData.documents" :key="index" class="document-item p-3 mb-3 border rounded">
-                  <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="mb-0">Document #{{ index + 1 }}</h5>
-                    <button type="button" class="btn btn-danger btn-sm" @click="removeDocument(index)">
-                      <i class="bi bi-trash"></i> Remove
-                    </button>
-                  </div>
-                  <div class="row g-3">
-                    <div class="col-md-6">
-                      <label :for="`docId-${index}`" class="form-label">Document Type</label>
-                      <select class="form-select" :id="`docId-${index}`" v-model="doc.docId" required>
-                        <option value="passport">Passport</option>
-                        <option value="seamenBook">Seamen Book</option>
-                        <option value="yellowFever">Yellow Fever</option>
-                        <option value="visa">Visa</option>
-                      </select>
-                    </div>
-                    <div class="col-md-6">
-                      <label :for="`docNo-${index}`" class="form-label">Document Number</label>
-                      <input type="text" class="form-control" :id="`docNo-${index}`" v-model="doc.docNo" required>
-                    </div>
-                    <div class="col-md-6">
-                      <label :for="`docFile-${index}`" class="form-label">Document File</label>
-                      <input type="file" class="form-control" :id="`docFile-${index}`" @change="handleDocFileUpload($event, index)">
-                    </div>
-                    <div class="col-md-6">
-                      <label :for="`issued-${index}`" class="form-label">Issued By</label>
-                      <input type="text" class="form-control" :id="`issued-${index}`" v-model="doc.issued">
-                    </div>
-                    <div class="col-md-6">
-                      <label :for="`validDate-${index}`" class="form-label">Valid Date</label>
-                      <input type="date" class="form-control" :id="`validDate-${index}`" v-model="doc.validDate">
-                    </div>
-                    <div class="col-md-6">
-                      <label :for="`expiredDate-${index}`" class="form-label">Expiry Date</label>
-                      <input type="date" class="form-control" :id="`expiredDate-${index}`" v-model="doc.expiredDate">
-                    </div>
-                    <div class="col-md-12">
-                      <label :for="`remark-${index}`" class="form-label">Remarks</label>
-                      <textarea class="form-control" :id="`remark-${index}`" v-model="doc.remark" rows="2"></textarea>
-                    </div>
-                  </div>
-                </div>
-                <button type="button" class="btn btn-primary" @click="addDocument">
-                  <i class="bi bi-plus-circle"></i> Add Document
-                </button> -->
               </div>
               
-              <!-- <div class="section-container mb-4">
+              <div class="section-container mb-4">
                 <h4 class="section-title">
-                  <i class="bi bi-rulers me-2"></i>Uniform Sizes
+                  <i class="bi bi-file-earmark-person me-2"></i>Photo Upload
                 </h4>
-                <div class="row g-3">
-                  <div class="col-md-4">
-                    <label for="whiteShirt" class="form-label">White Shirt Size</label>
-                    <select class="form-select" id="whiteShirt" v-model="formData.whiteShirt">
-                      <option value="S">S</option>
-                      <option value="M">M</option>
-                      <option value="L">L</option>
-                      <option value="XL">XL</option>
-                      <option value="XXL">XXL</option>
-                    </select>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="photoUpload" class="form-label">Candidate Photo</label>
+                      <input type="file" class="form-control" id="photoUpload" name="photo" @change="handlePhotoUpload" accept="image/*">
+                      <div class="form-text">Upload a recent passport-style photo (JPG, PNG, max 2MB)</div>
+                    </div>
                   </div>
-                  <div class="col-md-4">
-                    <label for="bluePants" class="form-label">Blue Pants Size</label>
-                    <select class="form-select" id="bluePants" v-model="formData.bluePants">
-                      <option value="S">S</option>
-                      <option value="M">M</option>
-                      <option value="L">L</option>
-                      <option value="XL">XL</option>
-                      <option value="XXL">XXL</option>
-                    </select>
-                  </div>
-                  <div class="col-md-4">
-                    <label for="overall" class="form-label">Overall Size</label>
-                    <select class="form-select" id="overall" v-model="formData.overall">
-                      <option value="S">S</option>
-                      <option value="M">M</option>
-                      <option value="L">L</option>
-                      <option value="XL">XL</option>
-                      <option value="XXL">XXL</option>
-                    </select>
-                  </div>
-                  <div class="col-md-4">
-                    <label for="safetyShoes" class="form-label">Safety Shoes Size</label>
-                    <select class="form-select" id="safetyShoes" v-model="formData.safetyShoes">
-                      <option value="39">39</option>
-                      <option value="40">40</option>
-                      <option value="41">41</option>
-                      <option value="42">42</option>
-                      <option value="43">43</option>
-                      <option value="44">44</option>
-                      <option value="45">45</option>
-                    </select>
-                  </div>
-                  <div class="col-md-4">
-                    <label for="winterJacket" class="form-label">Winter Jacket Size</label>
-                    <select class="form-select" id="winterJacket" v-model="formData.winterJacket">
-                      <option value="S">S</option>
-                      <option value="M">M</option>
-                      <option value="L">L</option>
-                      <option value="XL">XL</option>
-                      <option value="XXL">XXL</option>
-                    </select>
+                  <div class="col-md-6">
+                    <div class="text-center">
+                      <div v-if="photoPreview" class="photo-preview mb-2">
+                        <img :src="photoPreview" alt="Candidate Photo" class="img-fluid rounded" style="max-height: 150px;">
+                      </div>
+                      <div v-else class="photo-placeholder mb-2">
+                        <i class="bi bi-person-circle fs-1"></i>
+                        <p class="text-muted">No photo uploaded</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div> -->
+              </div>
             </div>
             
             <!-- Step 4: Trainings -->
@@ -648,69 +461,6 @@
                     </tbody>
                   </table>
                 </div>
-                
-                <!-- <h5 class="mb-3">STCW Trainings</h5>
-                <div class="table-responsive mb-4">
-                  <table class="table table-bordered table-hover">
-                    <thead class="table-light">
-                      <tr>
-                        <th>Training</th>
-                        <th>Qualification No.</th>
-                        <th>Issued Date</th>
-                        <th>Expiration Date</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr v-for="(training, index) in formData.stcwTrainings" :key="`stcw-${index}`">
-                        <td>{{ training.trainingType }}</td>
-                        <td><input type="text" class="form-control" v-model="training.qualificationNo"></td>
-                        <td><input type="date" class="form-control" v-model="training.issuedDate"></td>
-                        <td><input type="date" class="form-control" v-model="training.expiredDate"></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div> -->
-                
-                <!-- <h5 class="mb-3">Additional Trainings</h5>
-                <div v-for="(training, index) in formData.trainings" :key="index" class="training-item p-3 mb-3 border rounded">
-                  <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="mb-0">Training #{{ index + 1 }}</h5>
-                    <button type="button" class="btn btn-danger btn-sm" @click="removeTraining(index)">
-                      <i class="bi bi-trash"></i> Remove
-                    </button>
-                  </div>
-                  <div class="row g-3">
-                    <div class="col-md-6">
-                      <label :for="`trainingId-${index}`" class="form-label">Training Type</label>
-                      <select class="form-select" :id="`trainingId-${index}`" v-model="training.trainingId" required>
-                        <option value="basicSafety">Basic Safety Training</option>
-                        <option value="advancedFireFighting">Advanced Fire Fighting</option>
-                        <option value="medicalFirst">Medical First Aid</option>
-                        <option value="survivalCraft">Survival Craft & Rescue Boats</option>
-                        <option value="tankerFamiliarization">Tanker Familiarization</option>
-                      </select>
-                    </div>
-                    <div class="col-md-6">
-                      <label :for="`referenceId-${index}`" class="form-label">Reference ID</label>
-                      <input type="text" class="form-control" :id="`referenceId-${index}`" v-model="training.referenceId">
-                    </div>
-                    <div class="col-md-6">
-                      <label :for="`certificateNo-${index}`" class="form-label">Certificate Number</label>
-                      <input type="text" class="form-control" :id="`certificateNo-${index}`" v-model="training.certificateNo">
-                    </div>
-                    <div class="col-md-3">
-                      <label :for="`validDate-${index}`" class="form-label">Valid Date</label>
-                      <input type="date" class="form-control" :id="`validDate-${index}`" v-model="training.validDate">
-                    </div>
-                    <div class="col-md-3">
-                      <label :for="`expiredDate-${index}`" class="form-label">Expiry Date</label>
-                      <input type="date" class="form-control" :id="`expiredDate-${index}`" v-model="training.expiredDate">
-                    </div>
-                  </div>
-                </div>
-                <button type="button" class="btn btn-primary" @click="addTraining">
-                  <i class="bi bi-plus-circle"></i> Add Training
-                </button> -->
               </div>
             </div>
             
@@ -730,7 +480,6 @@
                         <th>Vessel Type</th>
                         <th>Vessel Company</th>
                         <th style="width:6rem;">DWT</th>
-                        <!-- <th>GRT</th> -->
                         <th style="width:6rem;">KWH</th>
                         <th>Sign On</th>
                         <th>Sign Off</th>
@@ -781,135 +530,19 @@
                           </select>
                         </td>
                         <td><input type="text" class="form-control" v-model="exp.company"></td>
-                        <!-- <td>
-                          <select class="form-select" v-model="exp.flag">
-                            <option value="id">Indonesia</option>
-                            <option value="sg">Singapore</option>
-                            <option value="pa">Panama</option>
-                            <option value="li">Liberia</option>
-                            <option value="mh">Marshall Islands</option>
-                          </select>
-                        </td>
-                        <td>
-                          <select class="form-select" v-model="exp.tradingAreaId">
-                            <option value="worldwide">Worldwide</option>
-                            <option value="asia">Asia</option>
-                            <option value="europe">Europe</option>
-                            <option value="americas">Americas</option>
-                            <option value="africa">Africa</option>
-                            <option value="domestic">Domestic</option>
-                          </select>
-                        </td> -->
                         <td><input type="number" class="form-control" v-model="exp.dwt"></td>
-                        <!-- <td><input type="number" class="form-control" v-model="exp.grt"></td> -->
                         <td><input type="number" class="form-control" v-model="exp.kwh"></td>
                         <td><input type="date" class="form-control" v-model="exp.signOn"></td>
                         <td><input type="date" class="form-control" v-model="exp.signOff"></td>
                         <td>
                           <button type="button" class="btn btn-danger btn-sm" @click="removeExperience(index)">
-                            <i class="bi bi-trash"></i>
+                            <i class="bi bi-trash"></i>Delete
                           </button>
                         </td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-                
-                <!-- <div v-for="(exp, index) in formData.experiences" :key="`detail-${index}`" class="experience-item p-3 mb-3 border rounded">
-                  <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="mb-0">Experience #{{ index + 1 }}</h5>
-                    <button type="button" class="btn btn-danger btn-sm" @click="removeExperience(index)">
-                      <i class="bi bi-trash"></i> Remove
-                    </button>
-                  </div>
-                  <div class="row g-3">
-                    <div class="col-md-6">
-                      <label :for="`vessel-${index}`" class="form-label">Vessel Name</label>
-                      <input type="text" class="form-control" :id="`vessel-${index}`" v-model="exp.vessel" required>
-                    </div>
-                    <div class="col-md-6">
-                      <label :for="`vesselType-${index}`" class="form-label">Vessel Type</label>
-                      <select class="form-select" :id="`vesselType-${index}`" v-model="exp.vesselType" required>
-                        <option value="bulkCarrier">Bulk Carrier</option>
-                        <option value="container">Container Ship</option>
-                        <option value="tanker">Tanker</option>
-                        <option value="lpg">LPG Carrier</option>
-                        <option value="lng">LNG Carrier</option>
-                        <option value="roro">Ro-Ro</option>
-                        <option value="passenger">Passenger Ship</option>
-                        <option value="generalCargo">General Cargo</option>
-                      </select>
-                    </div>
-                    <div class="col-md-4">
-                      <label :for="`flag-${index}`" class="form-label">Flag</label>
-                      <select class="form-select" :id="`flag-${index}`" v-model="exp.flag">
-                        <option value="id">Indonesia</option>
-                        <option value="sg">Singapore</option>
-                        <option value="pa">Panama</option>
-                        <option value="li">Liberia</option>
-                        <option value="mh">Marshall Islands</option>
-                      </select>
-                    </div>
-                    <div class="col-md-4">
-                      <label :for="`tradingAreaId-${index}`" class="form-label">Trading Area</label>
-                      <select class="form-select" :id="`tradingAreaId-${index}`" v-model="exp.tradingAreaId">
-                        <option value="worldwide">Worldwide</option>
-                        <option value="asia">Asia</option>
-                        <option value="europe">Europe</option>
-                        <option value="americas">Americas</option>
-                        <option value="africa">Africa</option>
-                        <option value="domestic">Domestic</option>
-                      </select>
-                    </div>
-                    <div class="col-md-4">
-                      <label :for="`rank-${index}`" class="form-label">Rank</label>
-                      <select class="form-select" :id="`rank-${index}`" v-model="exp.rank" required>
-                        <option value="captain">Captain</option>
-                        <option value="chiefOfficer">Chief Officer</option>
-                        <option value="secondOfficer">Second Officer</option>
-                        <option value="thirdOfficer">Third Officer</option>
-                        <option value="chiefEngineer">Chief Engineer</option>
-                        <option value="secondEngineer">Second Engineer</option>
-                        <option value="thirdEngineer">Third Engineer</option>
-                        <option value="fourthEngineer">Fourth Engineer</option>
-                        <option value="bosun">Bosun</option>
-                        <option value="abSeaman">AB Seaman</option>
-                        <option value="ordinarySeaman">Ordinary Seaman</option>
-                      </select>
-                    </div>
-                    <div class="col-md-4">
-                      <label :for="`dwt-${index}`" class="form-label">DWT (Deadweight Tonnage)</label>
-                      <input type="number" class="form-control" :id="`dwt-${index}`" v-model="exp.dwt">
-                    </div>
-                    <div class="col-md-4">
-                      <label :for="`grt-${index}`" class="form-label">GRT (Gross Tonnage)</label>
-                      <input type="number" class="form-control" :id="`grt-${index}`" v-model="exp.grt">
-                    </div>
-                    <div class="col-md-4">
-                      <label :for="`kwh-${index}`" class="form-label">Engine Power (kWh)</label>
-                      <input type="number" class="form-control" :id="`kwh-${index}`" v-model="exp.kwh">
-                    </div>
-                    <div class="col-md-4">
-                      <label :for="`owner-${index}`" class="form-label">Ship Owner/Company</label>
-                      <input type="text" class="form-control" :id="`owner-${index}`" v-model="exp.owner">
-                    </div>
-                    <div class="col-md-6">
-                      <label :for="`signOn-${index}`" class="form-label">Sign On Date</label>
-                      <input type="date" class="form-control" :id="`signOn-${index}`" v-model="exp.signOn" required>
-                    </div>
-                    <div class="col-md-6">
-                      <label :for="`signOff-${index}`" class="form-label">Sign Off Date</label>
-                      <input type="date" class="form-control" :id="`signOff-${index}`" v-model="exp.signOff" required>
-                    </div>
-                    <div class="col-md-12">
-                      <label :for="`signOffReason-${index}`" class="form-label">Sign Off Reason</label>
-                      <input type="text" class="form-control" :id="`signOffReason-${index}`" v-model="exp.signOffReason">
-                    </div>
-                  </div>
-                </div>
-                <button type="button" class="btn btn-primary" @click="addExperience">
-                  <i class="bi bi-plus-circle"></i> Add Sea Experience
-                </button> -->
               </div>
               <div class="section-container mb-4" style="background-color: white;box-shadow:none;">
                 <button type="button" class="btn btn-primary" style="padding:0.6rem" @click="addExperience">
@@ -955,8 +588,9 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from 'vue';
+import { ref, reactive, onMounted, computed } from 'vue';
 
+const api = useApi(null,'multipart/form-data',false);
 const currentStep = ref(1);
 const photoPreview = ref(null);
 const certificatePreview = ref(null);
@@ -966,6 +600,8 @@ const certificateInput = ref(null);
 // Update the formData object in the script section to include the new fields
 const formData = reactive({
   // Existing fields
+  candidateId: '',
+  agentId: '',
   name: '',
   email: '',
   birthPlace: '',
@@ -1017,13 +653,15 @@ const formData = reactive({
     docNo: '',
     issued: '',
     issuedDate: '',
-    expiredDate: ''
+    expiredDate: '',
+    file: null
   },
   seamen: {
     docNo: '',
     issued: '',
     issuedDate: '',
-    expiredDate: ''
+    expiredDate: '',
+    file: null
   },
   usaVisa: {
     docNo: '',
@@ -1058,109 +696,34 @@ const formData = reactive({
   
   // New fields for Trainings - Updated based on PDF
   standardTrainings: [
-    { trainingType: 'TN000', name: 'BASIC SAFETY TRAINING (Reg.VI/1-4)', qualificationNo: '', issuedDate: '', expiredDate: '' },
-    { trainingType: 'TN001', name: 'Advanced Fire Fighting (Reg. VI/3)', qualificationNo: '', issuedDate: '', expiredDate: '' },
-    { trainingType: 'TN016', name: 'Adv training for chemical tanker cargo operations (Table A-V/1-1-3)', qualificationNo: '', issuedDate: '', expiredDate: '' },
-    { trainingType: 'TN017', name: 'Adv training for oil tanker cargo operations (Table A-V/1-1-2)', qualificationNo: '', issuedDate: '', expiredDate: '' },
-    { trainingType: 'TN089', name: 'GMDSS COURSE', qualificationNo: '', issuedDate: '', expiredDate: '' },
-    { trainingType: 'TN018', name: 'GMDSS - ENDORSEMENT', qualificationNo: '', issuedDate: '', expiredDate: '' },
-    { trainingType: 'TN022', name: 'SURVIVAL CRAFT & RESCUE BOAT', qualificationNo: '', issuedDate: '', expiredDate: '' },
-    { trainingType: 'TN035', name: 'Adv training for gas tanker cargo operations (Table A-V/1-2-2)', qualificationNo: '', issuedDate: '', expiredDate: '' },
-    { trainingType: 'TN302', name: 'BRIDGE RESOURCE MANAGEMENT (BRM) (Table A-II/1)', qualificationNo: '', issuedDate: '', expiredDate: '' },
-    { trainingType: 'TN324', name: 'FOOD HANDLING CERT', qualificationNo: '', issuedDate: '', expiredDate: '' },
-    { trainingType: 'TN374', name: 'ENGINE RESOURCE MANAGEMENT (ERM) (Table A-III/1)', qualificationNo: '', issuedDate: '', expiredDate: '' },
-    { trainingType: 'TN082', name: 'RISK MANAGEMENT TRAINING', qualificationNo: '', issuedDate: '', expiredDate: '' },
-    { trainingType: 'TN083', name: 'DANGEROUS CARGO ENDORSEMENTS - PETROLEUM', qualificationNo: '', issuedDate: '', expiredDate: '' },
-    { trainingType: 'TN096', name: 'DANGEROUS CARGO ENDORSEMENTS - CHEMICAL', qualificationNo: '', issuedDate: '', expiredDate: '' },
-    { trainingType: 'TN097', name: 'DANGEROUS ENDORSEMENTS GAS', qualificationNo: '', issuedDate: '', expiredDate: '' },
-    { trainingType: 'TN238', name: 'BASIC SEA SURVIVAL (BSS)', qualificationNo: '', issuedDate: '', expiredDate: '' },
-    { trainingType: 'TN023', name: 'MEDICAL FIRST AID', qualificationNo: '', issuedDate: '', expiredDate: '' },
-    { trainingType: 'TN024', name: 'MEDICAL CARE', qualificationNo: '', issuedDate: '', expiredDate: '' },
-    { trainingType: 'TN025', name: 'BRIDGE TEAM MANAGEMENT', qualificationNo: '', issuedDate: '', expiredDate: '' },
-    { trainingType: 'TN028', name: 'ISM-CODE', qualificationNo: '', issuedDate: '', expiredDate: '' },
-    { trainingType: 'TN019', name: 'TANKER FAMILIARIZATION', qualificationNo: '', issuedDate: '', expiredDate: '' },
-    { trainingType: 'TN005', name: 'NCC', qualificationNo: '', issuedDate: '', expiredDate: '' },
-    { trainingType: 'TN015', name: 'SHIP HANDLING & MANEUVERING COURSE', qualificationNo: '', issuedDate: '', expiredDate: '' },
-  ],
-  
-  stcwTrainings: [
-    {
-      trainingType: 'STCW A-II/1',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'STCW A-II/2',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'STCW A-III/1',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'STCW A-III/2',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'Engine Room Management',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'Gas Cargo Familiarization',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'Ship Security',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'Ship Security Officer Certified Competence for Master & Chief',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    },
-    {
-      trainingType: 'ISPS Code Familiarization',
-      qualificationNo: '',
-      issuedDate: '',
-      expiredDate: ''
-    }
+    { trainingId: 'TN000', name: 'BASIC SAFETY TRAINING (Reg.VI/1-4)', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingId: 'TN001', name: 'Advanced Fire Fighting (Reg. VI/3)', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingId: 'TN016', name: 'Adv training for chemical tanker cargo operations (Table A-V/1-1-3)', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingId: 'TN017', name: 'Adv training for oil tanker cargo operations (Table A-V/1-1-2)', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingId: 'TN089', name: 'GMDSS COURSE', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingId: 'TN018', name: 'GMDSS - ENDORSEMENT', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingId: 'TN022', name: 'SURVIVAL CRAFT & RESCUE BOAT', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingId: 'TN035', name: 'Adv training for gas tanker cargo operations (Table A-V/1-2-2)', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingId: 'TN302', name: 'BRIDGE RESOURCE MANAGEMENT (BRM) (Table A-II/1)', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingId: 'TN324', name: 'FOOD HANDLING CERT', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingId: 'TN374', name: 'ENGINE RESOURCE MANAGEMENT (ERM) (Table A-III/1)', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingId: 'TN082', name: 'RISK MANAGEMENT TRAINING', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingId: 'TN083', name: 'DANGEROUS CARGO ENDORSEMENTS - PETROLEUM', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingId: 'TN096', name: 'DANGEROUS CARGO ENDORSEMENTS - CHEMICAL', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingId: 'TN097', name: 'DANGEROUS ENDORSEMENTS GAS', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingId: 'TN238', name: 'BASIC SEA SURVIVAL (BSS)', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingId: 'TN023', name: 'MEDICAL FIRST AID', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingId: 'TN024', name: 'MEDICAL CARE', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingId: 'TN025', name: 'BRIDGE TEAM MANAGEMENT', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingId: 'TN028', name: 'ISM-CODE', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingId: 'TN019', name: 'TANKER FAMILIARIZATION', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingId: 'TN005', name: 'NCC', qualificationNo: '', issuedDate: '', expiredDate: '' },
+    { trainingId: 'TN015', name: 'SHIP HANDLING & MANEUVERING COURSE', qualificationNo: '', issuedDate: '', expiredDate: '' },
   ],
   
   // Existing fields
-  documents: [
-    {
-      docId: '',
-      docNo: '',
-      docFile: null,
-      issued: '',
-      validDate: '',
-      expiredDate: '',
-      remark: ''
-    }
-  ],
-  trainings: [
-    {
-      trainingId: '',
-      referenceId: '',
-      certificateNo: '',
-      validDate: '',
-      expiredDate: ''
-    }
-  ],
+  documents: [],
+  trainings: [],
   experiences: [
     {
       vessel: '',
@@ -1359,11 +922,162 @@ const removeExperience = (index) => {
   }
 };
 
-const submitForm = () => {
-  // Here you would typically send the form data to your backend
-  console.log('Form submitted:', formData);
-  alert('Application submitted successfully!');
-  // You could also reset the form or redirect the user
+// Submit form using FormData for multipart/form-data
+const submitForm = async() => {
+  // Create a new FormData object
+  const formDataObj = new FormData();
+  
+  // Add basic fields
+  formDataObj.append('candidateId', formData.candidateId || '');
+  formDataObj.append('agentId', formData.agentId || '');
+  formDataObj.append('name', formData.name);
+  formDataObj.append('birthPlace', formData.birthPlace);
+  formDataObj.append('birthDate', formData.birthDate);
+  formDataObj.append('sex', formData.sex);
+  formDataObj.append('maritalStatusId', formData.maritalStatusId);
+  formDataObj.append('numberOfChild', formData.numberOfChild);
+  formDataObj.append('address', formData.address);
+  formDataObj.append('city', formData.city);
+  formDataObj.append('zipCode', formData.zipCode);
+  formDataObj.append('countryId', formData.countryId);
+  formDataObj.append('phoneNo', formData.phoneNo);
+  formDataObj.append('handPhone', formData.handPhone);
+  formDataObj.append('email', formData.email);
+  formDataObj.append('religionId', formData.religionId);
+  formDataObj.append('bloodType', formData.bloodType);
+  formDataObj.append('nationalityId', formData.nationalityId);
+  formDataObj.append('rankToApply', formData.rankToApply);
+  formDataObj.append('rankApplyDate', formData.rankApplyDate);
+  formDataObj.append('certificateId', formData.certificateId);
+  formDataObj.append('certificateNo', formData.certificateNo);
+  formDataObj.append('certificateStatusId', formData.certificateStatusId);
+  formDataObj.append('certificateIssued', formData.certificateIssued);
+  formDataObj.append('certificateIssuedDate', formData.certificateIssuedDate);
+  formDataObj.append('certificateExpiryDate', formData.certificateExpiryDate);
+  formDataObj.append('height', formData.height);
+  formDataObj.append('weight', formData.weight);
+  formDataObj.append('whiteShirt', formData.whiteShirt);
+  formDataObj.append('bluePants', formData.bluePants);
+  formDataObj.append('overall', formData.overall);
+  formDataObj.append('safetyShoes', formData.safetyShoes);
+  formDataObj.append('winterJacket', formData.winterJacket);
+  
+  // Add file uploads
+  if (formData.photo) {
+    formDataObj.append('photo', formData.photo);
+  }
+  
+  if (formData.certificateDoc) {
+    formDataObj.append('certificateDoc', formData.certificateDoc);
+  }
+  
+  // Add passport details
+  // formDataObj.append('passport.docNo', formData.passport.docNo);
+  // formDataObj.append('passport.issued', formData.passport.issued);
+  // formDataObj.append('passport.issuedDate', formData.passport.issuedDate);
+  // formDataObj.append('passport.expiredDate', formData.passport.expiredDate);
+  // if (formData.passport.file) {
+  //   formDataObj.append('passport.docFile', formData.passport.file);
+  // }
+  formDataObj.append('passport', formData.passport.file);
+  
+  // Add seamen book details
+  // formDataObj.append('seamen.docNo', formData.seamen.docNo);
+  // formDataObj.append('seamen.issued', formData.seamen.issued);
+  // formDataObj.append('seamen.issuedDate', formData.seamen.issuedDate);
+  // formDataObj.append('seamen.expiredDate', formData.seamen.expiredDate);
+  // if (formData.seamen.file) {
+  //   formDataObj.append('seamen.docFile', formData.seamen.file);
+  // }
+  formDataObj.append('seamen', formData.seamen.file);
+  // Add documents array as JSON string
+  const documents = [
+    {
+      docId: "passport",
+      docNo: formData.passport.docNo,
+      issued: formData.passport.issued,
+      validDate: formData.passport.issuedDate,
+      expiredDate: formData.passport.expiredDate,
+      file: formData.passport.file,
+      remark: "Passport"
+    },
+    {
+      docId: "seamenBook",
+      docNo: formData.seamen.docNo,
+      issued: formData.seamen.issued,
+      validDate: formData.seamen.issuedDate,
+      expiredDate: formData.seamen.expiredDate,
+      file: formData.seamen.file,
+      remark: "Seamen Book"
+    }
+  ];
+  
+  formDataObj.append('documents', JSON.stringify(documents));
+  
+  // Add trainings array as JSON string
+  const trainings = formData.standardTrainings
+    .filter(training => training.qualificationNo || training.issuedDate || training.expiredDate)
+    .map(training => ({
+      trainingId: training.trainingId,
+      referenceId: training.qualificationNo || "",
+      certificateNo: training.qualificationNo || "",
+      validDate: training.issuedDate,
+      expiredDate: training.expiredDate
+    }));
+  
+  formDataObj.append('trainings', JSON.stringify(trainings));
+  
+  // Add experiences array as JSON string
+  const experiences = formData.experiences.map(exp => ({
+    vessel: exp.vessel,
+    vesselType: exp.vesselType,
+    flag: exp.flag || "",
+    tradingAreaId: exp.tradingAreaId || "",
+    rank: exp.rank,
+    dwt: parseInt(exp.dwt) || 0,
+    kwh: parseInt(exp.kwh) || 0,
+    owner: exp.company || exp.owner || "",
+    signOn: exp.signOn,
+    signOff: exp.signOff,
+    signOffReason: exp.signOffReason || ""
+  }));
+  
+  formDataObj.append('experiences', JSON.stringify(experiences));
+  
+  // Send the form data to the server
+  console.log('Submitting form data:', formDataObj);
+  try{
+    const res = await api.post('candidates',formDataObj)
+    alert('Application submitted successfully!');
+    console.log(res)
+  }
+  catch(e){
+    alert('Error submitting application. Please try again.');
+    console.log(e)
+  }
+  // Here you would typically use fetch or axios to send the data
+  // fetch('http://127.0.0.1:8000/api/candidates', {
+  //   method: 'POST',
+  //   body: formDataObj,
+  //   headers: {
+  //     'Content-Type': 'multipart/form-data'
+  //   }
+  // })
+  // .then(response => {
+  //   if (!response.ok) {
+  //     throw new Error('Network response was not ok');
+  //   }
+  //   return response.json();
+  // })
+  // .then(data => {
+  //   console.log('Success:', data);
+  //   alert('Application submitted successfully!');
+  // })
+  // .catch((error) => {
+  //   console.error('Error:', error);
+  //   alert('Error submitting application. Please try again.');
+  // });
+
 };
 
 const cocOptions = computed(() => {
@@ -1485,7 +1199,6 @@ const cocOptions = computed(() => {
             return [];
     }
 });
-
 </script>
 
 <style scoped>
@@ -1636,25 +1349,17 @@ const cocOptions = computed(() => {
   box-shadow: 0 6px 12px rgba(39, 174, 96, 0.3);
 }
 
-/* Photo & Certificate Upload */
-.photo-upload-container, .certificate-upload-container {
-  margin-bottom: 20px;
-}
-
-.photo-placeholder, .certificate-placeholder {
+.photo-placeholder {
   width: 150px;
   height: 150px;
-  border-radius: 5px;
-  background-color: #e9ecef;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #f8f9fa;
+  border: 1px dashed #ced4da;
+  border-radius: 5px;
   margin: 0 auto;
-}
-
-.photo-placeholder i, .certificate-placeholder i {
-  font-size: 3rem;
-  color: #adb5bd;
 }
 
 .photo-preview {
@@ -1663,37 +1368,7 @@ const cocOptions = computed(() => {
   border-radius: 5px;
   overflow: hidden;
   margin: 0 auto;
-}
-
-.photo-preview img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.certificate-preview {
-  width: 150px;
-  height: 150px;
-  border-radius: 5px;
-  background-color: #e9ecef;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  padding: 10px;
-}
-
-.certificate-preview i {
-  font-size: 3rem;
-  color: #0066cc;
-  margin-bottom: 10px;
-}
-
-.certificate-preview p {
-  font-size: 0.8rem;
-  text-align: center;
-  word-break: break-word;
+  border: 1px solid #ced4da;
 }
 
 @media (max-width: 768px) {

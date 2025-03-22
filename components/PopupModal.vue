@@ -5,10 +5,10 @@
       <!-- Replace the image src and text to match your content -->
       <img
         class="warning-image"
-        src="https://www.bull.co.id/uploads/pop_up_bull.jpg"
+        src="public/PT TOPAZ MARITIME - 2025-03-20T080357.656.jpg"
         alt="BULL Recruitment Warning"
       />
-      <h2>Waspada Terhadap Penipuan!</h2>
+      <!-- <h2>Waspada Terhadap Penipuan!</h2>
       <p>
         PT Buana Lintas Lautan Tbk (BULL) <strong>TIDAK</strong> pernah memungut
         biaya apapun dalam proses rekrutmen. Apabila ada pihak yang meminta
@@ -17,7 +17,7 @@
       <p>
         Apabila Bapak/Ibu menerima informasi mencurigakan, silakan hubungi email
         resmi: <strong>recruiter@bull.co.id</strong>.
-      </p>
+      </p> -->
     </div>
   </div>
 </template>
