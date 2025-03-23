@@ -637,7 +637,7 @@ const formData = reactive({
   winterJacket: '',
   
   // New fields for Personal Data
-  manningAgent: '',
+  manningAgent: 'TOPAZ MARITIME',
   nextOfKinName: '',
   nextOfKinAddress: '',
   nextOfKinCity: '',
@@ -948,6 +948,12 @@ const submitForm = async() => {
   formDataObj.append('nationalityId', formData.nationalityId);
   formDataObj.append('rankToApply', formData.rankToApply);
   formDataObj.append('rankApplyDate', formData.rankApplyDate);
+  formDataObj.append('nextOfKinName', formData.nextOfKinName);
+  formDataObj.append('nextOfKinAddress', formData.nextOfKinAddress);
+  formDataObj.append('nextOfKinCity', formData.nextOfKinCity);
+  formDataObj.append('nextOfKinZipCode', formData.nextOfKinZipCode);
+  formDataObj.append('nextOfKinPhone', formData.nextOfKinPhone);
+  formDataObj.append('relationship', formData.relationship);
   formDataObj.append('certificateId', formData.certificateId);
   formDataObj.append('certificateNo', formData.certificateNo);
   formDataObj.append('certificateStatusId', formData.certificateStatusId);
@@ -961,6 +967,7 @@ const submitForm = async() => {
   formDataObj.append('overall', formData.overall);
   formDataObj.append('safetyShoes', formData.safetyShoes);
   formDataObj.append('winterJacket', formData.winterJacket);
+  formDataObj.append('rank', formData.rank);
   
   // Add file uploads
   if (formData.photo) {
@@ -979,6 +986,7 @@ const submitForm = async() => {
   // if (formData.passport.file) {
   //   formDataObj.append('passport.docFile', formData.passport.file);
   // }
+  formDataObj.append('cocType', formData.cocType);
   formDataObj.append('passport', formData.passport.file);
   
   // Add seamen book details
