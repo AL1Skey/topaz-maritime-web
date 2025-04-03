@@ -12,6 +12,7 @@ onMounted(async() => {
     const data = await api.get(`/job-vacancies/${route.params.slug}`, {
         use_slug: 1
     })
+    
     job.value = data.data
     console.log("🚀 | onMounted | job.value:", job.value)
 })

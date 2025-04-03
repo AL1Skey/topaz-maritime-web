@@ -71,6 +71,10 @@ export const $info = {
       title: '',
       image: '/images/clients/client-7.jpg',
     },
+    {
+      title: '',
+      image: '/images/clients/client-8.png',
+    },
   ],
 
   about: {
