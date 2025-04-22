@@ -72,7 +72,6 @@
                     <select
                       class="form-select"
                       id="rankToApply"
-                      :disabled="!!formData.rankToApply"
                       v-model="formData.rankToApply"
                       required
                     >
@@ -391,7 +390,7 @@
                           >
                         </div>
                       </div>
-                      <div class="col-md-6">
+                     <!--- <div class="col-md-6">
                         <label for="rank" class="form-label">Rank</label>
                         <select
                           class="form-select"
@@ -420,7 +419,7 @@
                           <option value="2420">CHIEF COOK</option>
                           <option value="2430">MESS BOY</option>
                         </select>
-                      </div>
+                      </div>-->
                     </div>
                   </div>
 
@@ -452,10 +451,11 @@
                       <div class="col-md-4">
                         <label for="zipCode" class="form-label">Zip Code</label>
                         <input
-                          type="text"
+                          type="number"
                           class="form-control"
                           id="zipCode"
                           v-model="formData.zipCode"
+                          maxlength="5"
                           required
                         />
                       </div>
@@ -601,9 +601,10 @@
                           >ZIP Code</label
                         >
                         <input
-                          type="text"
+                          type="number"
                           class="form-control"
                           id="nextOfKinZipCode"
+                          maxlength="5"
                           v-model="formData.nextOfKinZipCode"
                         />
                       </div>
@@ -779,7 +780,7 @@
                           />
                         </td>
                       </tr>
-                      <tr>
+                      <!-- <tr>
                         <td>USA Visa</td>
                         <td>
                           <input
@@ -809,8 +810,8 @@
                             v-model="formData.usaVisa.expiredDate"
                           />
                         </td>
-                      </tr>
-                      <tr>
+                      </tr> -->
+                      <!-- <tr>
                         <td>Singapore Visa</td>
                         <td>
                           <input
@@ -840,7 +841,7 @@
                             v-model="formData.singaporeVisa.expiredDate"
                           />
                         </td>
-                      </tr>
+                      </tr> -->
                       <tr>
                         <td>Certificate of Endorsement State (COE)</td>
                         <td>
@@ -872,7 +873,7 @@
                           />
                         </td>
                       </tr>
-                      <tr>
+                      <!-- <tr>
                         <td>Certificate of Endorsement State (GOC)</td>
                         <td>
                           <input
@@ -902,7 +903,7 @@
                             v-model="formData.goc.expiredDate"
                           />
                         </td>
-                      </tr>
+                      </tr> -->
                       <tr>
                         <td>NPWP</td>
                         <td>
@@ -1330,106 +1331,113 @@ const formData = reactive({
   // New fields for Trainings - Updated based on PDF
   standardTrainings: [
     {
-      trainingId: "TN000",
-      name: "BASIC SAFETY TRAINING (Reg.VI/1-4)",
-      qualificationNo: "",
-      issuedDate: "",
-      expiredDate: "",
-    },
-    {
-      trainingId: "TN001",
-      name: "Advanced Fire Fighting (Reg. VI/3)",
-      qualificationNo: "",
-      issuedDate: "",
-      expiredDate: "",
-    },
-    {
       trainingId: "TN016",
-      name: "Adv training for chemical tanker cargo operations (Table A-V/1-1-3)",
-      qualificationNo: "",
-      issuedDate: "",
-      expiredDate: "",
-    },
-    {
-      trainingId: "TN017",
-      name: "Adv training for oil tanker cargo operations (Table A-V/1-1-2)",
-      qualificationNo: "",
-      issuedDate: "",
-      expiredDate: "",
-    },
-    {
-      trainingId: "TN089",
-      name: "GMDSS COURSE",
-      qualificationNo: "",
-      issuedDate: "",
-      expiredDate: "",
-    },
-    {
-      trainingId: "TN018",
-      name: "GMDSS - ENDORSEMENT",
-      qualificationNo: "",
-      issuedDate: "",
-      expiredDate: "",
-    },
-    {
-      trainingId: "TN022",
-      name: "SURVIVAL CRAFT & RESCUE BOAT",
+      name: "ADV. TRAINING FOR CHEMICAL TRAINING CARGO OPERATIONS (Table A-V/1-1-3)",
       qualificationNo: "",
       issuedDate: "",
       expiredDate: "",
     },
     {
       trainingId: "TN035",
-      name: "Adv training for gas tanker cargo operations (Table A-V/1-2-2)",
+      name: "ADV. TRAINING FOR GAS TANKER CARGO OPERATIONS (Table A-V/1-2-2)",
       qualificationNo: "",
       issuedDate: "",
       expiredDate: "",
     },
     {
-      trainingId: "TN302",
-      name: "BRIDGE RESOURCE MANAGEMENT (BRM) (Table A-II/1)",
+      trainingId: "TN017",
+      name: "ADV. TRAINING FOR OIL TANKER CARGO OPERATIONS (Table A-V/1-1-2)",
       qualificationNo: "",
       issuedDate: "",
       expiredDate: "",
     },
     {
-      trainingId: "TN324",
-      name: "FOOD HANDLING CERT",
+      trainingId: "TN370",
+      name: "ADV. SCAFOLLDING",
       qualificationNo: "",
       issuedDate: "",
       expiredDate: "",
     },
     {
-      trainingId: "TN374",
-      name: "ENGINE RESOURCE MANAGEMENT (ERM) (Table A-III/1)",
+      trainingId: "TN001",
+      name: "ADVANCED FIRE FIGHTING (Reg. VI/3)",
       qualificationNo: "",
       issuedDate: "",
       expiredDate: "",
     },
     {
-      trainingId: "TN082",
-      name: "RISK MANAGEMENT TRAINING",
+      trainingId: "TN384",
+      name: "AERONAUTICAL OFFICER (ARO)",
       qualificationNo: "",
       issuedDate: "",
       expiredDate: "",
     },
     {
-      trainingId: "TN083",
-      name: "DANGEROUS CARGO ENDORSEMENTS - PETROLEUM",
+      trainingId: "TN031",
+      name: "ARPA SIMULATOR",
       qualificationNo: "",
       issuedDate: "",
       expiredDate: "",
     },
     {
-      trainingId: "TN096",
-      name: "DANGEROUS CARGO ENDORSEMENTS - CHEMICAL",
+      trainingId: "TN417",
+      name: "AUTOMATIC RADAR PLOTTING AID",
       qualificationNo: "",
       issuedDate: "",
       expiredDate: "",
     },
     {
-      trainingId: "TN097",
-      name: "DANGEROUS ENDORSEMENTS GAS",
+      trainingId: "TN291",
+      name: "AUTOMATION",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN285",
+      name: "AUXILIARY ENGINE",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN013",
+      name: "BASIC COOKING (MLC 2006)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN250",
+      name: "BASIC FIRE FIGHTING",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN253",
+      name: "BASIC FIRST AID & CPR",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN234",
+      name: "BASIC OFFSHORE SURVIVAL TRAINING (BOST)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN224",
+      name: "BASIC PROPERTY OIL & CHEMICAL",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN000",
+      name: "BASIC SAFETY TRAINING (Reg.VI/1-4)",
       qualificationNo: "",
       issuedDate: "",
       expiredDate: "",
@@ -1442,15 +1450,36 @@ const formData = reactive({
       expiredDate: "",
     },
     {
-      trainingId: "TN023",
-      name: "MEDICAL FIRST AID",
+      trainingId: "TN207",
+      name: "BASIC TRAINING FOR LIQUEFID GAS TANKER CARGO OPERATIONS (A-V/1-2-1)",
       qualificationNo: "",
       issuedDate: "",
       expiredDate: "",
     },
     {
-      trainingId: "TN024",
-      name: "MEDICAL CARE",
+      trainingId: "TN316",
+      name: "BASIC TRAINING FOR OIL AND CHEMICAL TANKER CARGO OPERATIONS PROGAM",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN267",
+      name: "BOILER",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN302",
+      name: "BRIDGE RESOURCE MANAGEMENT (BRM) (Table A-II/1)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN160",
+      name: "BRIDGE SIMULATOR",
       qualificationNo: "",
       issuedDate: "",
       expiredDate: "",
@@ -1463,8 +1492,1261 @@ const formData = reactive({
       expiredDate: "",
     },
     {
+      trainingId: "TN173",
+      name: "BRIDGE WATCKEEPING",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN132",
+      name: "BUNKER PROCEDURE/HOT WORK",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN088",
+      name: "CAEGO SIMULATOR COURSE",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN040",
+      name: "CARGO HANDLING",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN230",
+      name: "CARGO PUMP OPERATION",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN360",
+      name: "CARGO TANK OVERFLOW TRAINING",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN295",
+      name: "CHART CORRECTION (T&P CORRECTION AND FIX CORRECTION)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN128",
+      name: "CHARTERING SENIOR OFFICER",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN067",
+      name: "COLREG",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN041",
+      name: "COMPANY CULTURE & MOTIVATION",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN349",
+      name: "CONFINED SPACE",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN218",
+      name: "CONTROL SYSTEM",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN331",
+      name: "CRANE OPERATOR CLASS-A",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN347",
+      name: "CRANE OPERATOR CLASS-B",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN348",
+      name: "CRANE OPERATOR CLASS-C",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN330",
+      name: "CRISIS MANAGEMENT HUMAN BEHAVIOUR TRAINING",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN156",
+      name: "CRITICAL EQUIPMENT",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN215",
+      name: "CROSS CULTURE",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN301",
+      name: "CROWD MANAGEMENT TRAINING (Reg. V/2)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN176",
+      name: "CRUDE OIL WASHING",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN209",
+      name: "CYBER SECURITY",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN155",
+      name: "DECK SIMULATOR",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN368",
+      name: "ECDIS CHART WORLD e GLOBE G2",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN385",
+      name: "ECDIS GENERIK",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN371",
+      name: "ECDIS SAM ELECTRONIC PILOT PLATINUM",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN367",
+      name: "ECDIS SPERRY MARINE",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN012",
+      name: "ELECTRICAL",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN170",
+      name: "ELECTICAL PRACTICE FOR MARINE USE",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN308",
+      name: "ELECTRO - TECHNICAL ENGINEER (Reg. III/6)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN307",
+      name: "ELECTRO TEHNICAL RATINGS (Reg. III/7, table A-III/7)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN171",
+      name: "ELECTRONIC CHART DISPLAY INFORMATON SYSTEM(ECDIS) (Table A-II/1 and A-III/1)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN354",
+      name: "ELECTRONIC NAVIGATION SYSTEMS-ENS",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN098",
+      name: "ELEMENTARY FIRST AID ( A-VI/12.1.3 )",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN134",
+      name: "ENCLOSE SPACE ENTRY PERMIT",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN383",
+      name: "ENDORSEMENT GMDSS",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN205",
+      name: "ENERGY CONSERVATION",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN374",
+      name: "ENGINE RESOURCE MANAGEMENT (ERM) (Table A-III/1)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN300",
+      name: "ENGINE ROOM RESOURCES MGMT",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN130",
+      name: "ENGINE SIMULATOR",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN357",
+      name: "ENGINE TEAM MANAGEMENT- ETM",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN124",
+      name: "EOHS",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN158",
+      name: "FAMILIARIZATION OF ECDIS",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN217",
+      name: "FAST RESCUE BOAT",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN239",
+      name: "FAST RESCUE CRAFT (FRC)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN214",
+      name: "FIRE FIGHTING & ENCLOSED ENTRY SPACE",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN066",
+      name: "FIRE FIGHTING  -  (A-VI/1-2 & A- VI/3)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN324",
+      name: "FOOD HANDLING CERT",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN325",
+      name: "FOOD SAFETY CERT",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN352",
+      name: "FORUNO TRAINING",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN123",
+      name: "FRAMO PUMPS",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN269",
+      name: "FRESH WATER GENERATOR",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN181",
+      name: "FUEL OIL",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN243",
+      name: "FURTHER OFFSHORE LIFEBOAT COXWAIN (OPITO)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN162",
+      name: "GARBAGE MANAGEMENT PLAN",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN064",
+      name: "GAS MEASUREMENT",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN002",
+      name: "GAS TANKER SAFETY",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN034",
+      name: "GENERAL OPERATOR CERTIFICATE",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN210",
+      name: "GENERATOR OPERATION",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN055",
+      name: "GMDSS (MARITIME EDUCATION)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN018",
+      name: "GMDSS - GOC",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN089",
+      name: "GMDSS COURSE",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN221",
+      name: "H2S TRAINING",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN136",
+      name: "HAND STEERING AIS,PERSONAL ASSESMENT",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN036",
+      name: "HARBOUR CRAFT MASTER",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN283",
+      name: "HAZARD INDETIFICATION AND RISK MANAGEMENT",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN254",
+      name: "HAZARD OF PETROLEUM",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN094",
+      name: "HAZARDOUS CARGOES",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN127",
+      name: "HEALTH CREW TRAINING",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN231",
+      name: "HEAVY RUNNING PROPELER",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN245",
+      name: "HELICOPTER LANDING OFFICER (HLO)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN259",
+      name: "HELICOPTER UNDERWATER ESCAPE",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN237",
+      name: "HELICOPTER UNDERWATER ESCAPE TRAINING (HUET)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN380",
+      name: "HELIDECK EMERGENCY RESPONSE",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN247",
+      name: "HELIDECK FIRE FIGHTING",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN008",
+      name: "HIGH RISK AREA AND WARLIKE AREA",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN397",
+      name: "HLO ASSISTANT (OFFSHORE)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN398",
+      name: "HUET & BSS (OFFSHORE)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN299",
+      name: "HUMAN RELATION",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN069",
+      name: "HUMAN RELATIONS  - ( A-VI/1-4)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN326",
+      name: "IMDG CODE",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN157",
+      name: "INERT GAS SYSTEM",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN046",
+      name: "INSPECTIONS",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN045",
+      name: "INTERNATIONAL CONVENTIONS REGULATION",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN298",
+      name: "INTERNATIONAL PAINT INDONESIA",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
       trainingId: "TN028",
       name: "ISM-CODE",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN072",
+      name: "ISPS CODE",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN292",
+      name: "LEADERSHIP & MOTIVATION",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN328",
+      name: "MARINE HIGH VOLTAGE (MHV)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN138",
+      name: "MARINE RESOURCE MANAGEMENT",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN037",
+      name: "MARITIME ENGLISH",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN081",
+      name: "MARPOL",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN184",
+      name: "MARPOL 73/78",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN165",
+      name: "MARPOL VIOLATION TRAINING",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN289",
+      name: "MEASUREMENT TECHNIC",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN070",
+      name: "MEDICAL CARE  - ( A-VI/4-2 )",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN059",
+      name: "MEDICAL FIRST AID  -  (A-VI/1-3, 4-1)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN043",
+      name: "MEDICARE ONBOARD",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN258",
+      name: "MLC CULINARY",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN151",
+      name: "OIL & AIR POLLUTION TRAINING",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN146",
+      name: "OIL & CHEMICAL SPILL GEAR",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN077",
+      name: "OIL MAJOR INSPECTION",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN189",
+      name: "OIL POLLUTION PREVENTION",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN379",
+      name: "OIL TANKER CARGO & BALLAST HANDLING SIMULATOR",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN228",
+      name: "OIL TANKER FAMILIARIZATION",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN095",
+      name: "OIL TANKER SAFETY",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN233",
+      name: "OIL TANKER SPECIALIZED TRAINING PROGRAMME",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN061",
+      name: "OIL TANKER TRAINING SYSTEM IMO 1.01/1.02",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN143",
+      name: "OIL WATER SEPARATOR",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN409",
+      name: "OIL-CE (CONTROLLING EMERENCIES ASSESMENT)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN168",
+      name: "OIL/CRUDE TANKER",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN153",
+      name: "OPERATION & MAINTENANCE ENGINE",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN063",
+      name: "OPERATION OF GENERATORS",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN232",
+      name: "OPERATIONAL LEADERSHIP TRAINING",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN296",
+      name: "OPERATIONAL USE OF ECDIS TRAINING",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN147",
+      name: "PERMIT TO WORK,HOT WORK,COLD WORK",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN085",
+      name: "PERS SAFETY & SOCIAL RESP (A-VI/12.14)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN050",
+      name: "PERSONAL SAFETY",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN222",
+      name: "PERSONAL SAFETY PREVENTION",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN068",
+      name: "PERSONAL SURVIVAL  -  ( A-VI/1-1, 2-1 )",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN309",
+      name: "PERSONNEL OPERATING DYNAMIC POSITIONING SYSTEMS (STCW Seksi B-V/e)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN047",
+      name: "PLANNED MAINTENANCE & REPAIR",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN261",
+      name: "PLEDGE TO ENVIRONMENT",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN220",
+      name: "PORT STATE CONTROL",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN049",
+      name: "PREVENTION OF POLLUTION",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN190",
+      name: "PROCEDURES FOR PREVENTING MARINE POLLUTION",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN086",
+      name: "PROFICIENCY FAST RESC BOAT (A-VI/258)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN004",
+      name: "RADAR OBSERVER",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN135",
+      name: "RADAR PLOTTING",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN032",
+      name: "RADAR SIMULATOR",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN329",
+      name: "RATING AS ABLE SEAFARER ENGINE",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN303",
+      name: "RATING DUTY CERTIFIED TO BE PART OF A NAVIGATIONAL OR ENGINE ROOM WATCH (Reg. II/4, III/4)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN323",
+      name: "RATINGS AS ABLE SEAFARER DECK",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN125",
+      name: "REFRIGERATOR SYSTEM & MURT GAS SYSTEM",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN263",
+      name: "RISK MANAGEMENT AWARENESS",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN082",
+      name: "RISK MANAGEMENT TRAINING",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN192",
+      name: "SAFETY",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN271",
+      name: "SAFETY EQUIPMENT",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN264",
+      name: "SAFETY IN ACTION",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN166",
+      name: "SAFETY IN CHEMICAL TANKERS",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN223",
+      name: "SAFETY IN ENGINE ROOM",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN219",
+      name: "SAFETY MANAGEMENT SYSTEM",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN193",
+      name: "SAFETY MNGT",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN039",
+      name: "SAFETY NAVIGATION",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN044",
+      name: "SAFETY OF OPERATIONS",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN194",
+      name: "SAFETY OFFICER COURSE",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN152",
+      name: "SAFETY ON BOARD TRAINING",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN257",
+      name: "SAFETY SECURITY POLLUTION",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN195",
+      name: "SAFETY WORK SHOP",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN196",
+      name: "SAFETY, ENVIRONMENT, SECURITY & EMERGENCY",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN387",
+      name: "SCAFFOLDING INSPECTION COURSE",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN266",
+      name: "SCOPE",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN120",
+      name: "SEAFARER HEALTH EDUCATION COURSE PROGRAM",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN315",
+      name: "SEAFARERS DESIGNATED SECURITY DUTIES",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN311",
+      name: "SECURITY AWARENESS TRAINING (STCW Seksi A-VI/6, Table A-VI/6-1, B-VI/6)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN197",
+      name: "SENIOR OFFICER GATHERING",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN051",
+      name: "SHIP GENERAL SAFETY",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN015",
+      name: "SHIP HANDLING & MANEUVERING COURSE",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN278",
+      name: "SHIP INTRODUCTION",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN126",
+      name: "SHIP PERSONAL ASSESMENT REPORT",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN038",
+      name: "SHIP SECURITY OFFICERS TRAINING ( Table A-VI/5, B-VI/5 )",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN255",
+      name: "SHIP SHORE SAFETY CHECKLIST",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN198",
+      name: "SHIP/SHORE FAMILIARIZATION",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN327",
+      name: "SHIP'S COOK TRAINING",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN145",
+      name: "SHIPBOARD FAMILIARIZATION",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN287",
+      name: "SHIPBOARD MEDICAL",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN150",
+      name: "SHIPBOARD SAFETY OFFICER TRAINING",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN090",
+      name: "SIMULATOR BRIDGE TEAM MANAGEMENT",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN226",
+      name: "SIMULATOR DIESEL PROPULSION",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN053",
+      name: "SMS (ISM CODE)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN199",
+      name: "SOLAS V",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN052",
+      name: "SOPEP",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN388",
+      name: "SPECIAL OIL TANKER TRAINING",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN087",
+      name: "SPECIAL OIL TANKER TRAINING (A-V/18)",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN350",
+      name: "STEWARD TRAINING",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN022",
+      name: "SURVIVAL CRAFT & RESCUE BOAT",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN129",
+      name: "SURVIVAL LIFE ONBOARD",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN344",
+      name: "T- BOSIET",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN415",
+      name: "T-FOET",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN273",
+      name: "TANK CLEANING",
+      qualificationNo: "",
+      issuedDate: "",
+      expiredDate: "",
+    },
+    {
+      trainingId: "TN020",
+      name: "TANKER BASIC SAFETY",
       qualificationNo: "",
       issuedDate: "",
       expiredDate: "",
@@ -1477,15 +2759,8 @@ const formData = reactive({
       expiredDate: "",
     },
     {
-      trainingId: "TN005",
-      name: "NCC",
-      qualificationNo: "",
-      issuedDate: "",
-      expiredDate: "",
-    },
-    {
-      trainingId: "TN015",
-      name: "SHIP HANDLING & MANEUVERING COURSE",
+      trainingId: "TN362",
+      name: "WELDING",
       qualificationNo: "",
       issuedDate: "",
       expiredDate: "",
@@ -1788,11 +3063,11 @@ const submitForm = async () => {
   // Create a new FormData object
   const formDataObj = new FormData();
 
-  // Add basic fields
+  // Add basic fields with character limits
   formDataObj.append("candidateId", formData.candidateId || "");
   formDataObj.append("agentId", formData.agentId || "");
-  formDataObj.append("name", formData.name);
-  formDataObj.append("birthPlace", formData.birthPlace);
+  formDataObj.append("name", formData.name?.slice(0, 50)); // Max 50 characters
+  formDataObj.append("birthPlace", formData.birthPlace?.slice(0, 50)); // Max 50 characters
   formDataObj.append("birthDate", formData.birthDate);
   formDataObj.append("sex", formData.sex);
   formDataObj.append("maritalStatusId", formData.maritalStatusId);
@@ -1801,14 +3076,14 @@ const submitForm = async () => {
     maritalStatusOptions[formData.maritalStatusId]
   );
   formDataObj.append("numberOfChild", formData.numberOfChild);
-  formDataObj.append("address", formData.address);
-  formDataObj.append("city", formData.city);
-  formDataObj.append("zipCode", formData.zipCode);
+  formDataObj.append("address", formData.address); // No character limit
+  formDataObj.append("city", formData.city?.slice(0, 20)); // Max 20 characters
+  formDataObj.append("zipCode", formData.zipCode?.toString().slice(0, 8)); // Max 8 characters
   formDataObj.append("countryId", formData.countryId);
   formDataObj.append("countryName", countryOptions[formData.countryId]);
-  formDataObj.append("phoneNo", formData.phoneNo);
-  formDataObj.append("handPhone", formData.handPhone);
-  formDataObj.append("email", formData.email);
+  formDataObj.append("phoneNo", formData.phoneNo?.slice(0, 50)); // Max 50 characters
+  formDataObj.append("handPhone", formData.handPhone?.slice(0, 50)); // Max 50 characters
+  formDataObj.append("email", formData.email?.slice(0, 100)); // Max 100 characters
   formDataObj.append("religionId", formData.religionId);
   formDataObj.append("religionName", religionOptions[formData.religionId]);
   formDataObj.append("bloodType", formData.bloodType);
@@ -1823,11 +3098,11 @@ const submitForm = async () => {
     Object.keys(rankMap).find((key) => rankMap[key] === formData.rankToApply)
   );
   formDataObj.append("rankApplyDate", formData.rankApplyDate);
-  formDataObj.append("nextOfKinName", formData.nextOfKinName);
-  formDataObj.append("nextOfKinAddress", formData.nextOfKinAddress);
-  formDataObj.append("nextOfKinCity", formData.nextOfKinCity);
-  formDataObj.append("nextOfKinZipCode", formData.nextOfKinZipCode);
-  formDataObj.append("nextOfKinPhone", formData.nextOfKinPhone);
+  formDataObj.append("nextOfKinName", formData.nextOfKinName?.slice(0, 80)); // Max 80 characters
+  formDataObj.append("nextOfKinAddress", formData.nextOfKinAddress); // No character limit
+  formDataObj.append("nextOfKinCity", formData.nextOfKinCity?.slice(0, 20)); // Max 20 characters
+  formDataObj.append("nextOfKinZipCode", formData.nextOfKinZipCode?.slice(0, 8)); // Max 8 characters
+  formDataObj.append("nextOfKinPhone", formData.nextOfKinPhone?.slice(0, 50)); // Max 50 characters
   formDataObj.append("relationship", formData.relationship);
   formDataObj.append(
     "relationship_name",
@@ -1846,7 +3121,7 @@ const submitForm = async () => {
   formDataObj.append("overall", formData.overall);
   formDataObj.append("safetyShoes", formData.safetyShoes);
   formDataObj.append("winterJacket", formData.winterJacket);
-  formDataObj.append("rank", formData.rank);
+  formDataObj.append("rank", formData.rankToApply);
 
   // Add file uploads
   if (formData.photo) {
@@ -1966,7 +3241,7 @@ const submitForm = async () => {
     alert("Application submitted successfully!");
     console.log(res);
     if (typeof window !== "undefined") {
-      window.location.href = "/careers";
+      window.location.href = `${window.location.origin}`;
     }
   } catch (e) {
     alert("Error submitting application. Please try again.");

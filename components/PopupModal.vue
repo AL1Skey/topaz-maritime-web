@@ -1,5 +1,5 @@
 <template>
-  <div v-if="show" class="popup-backdrop" @click="close">
+  <div  v-if="show" class="popup-backdrop" @click="close">
     <div class="popup-content" @click.stop>
       <button class="close-button" @click="close">X</button>
       <!-- Replace the image src and text to match your content -->
@@ -7,6 +7,7 @@
         class="warning-image"
         src="public/PT TOPAZ MARITIME - 2025-03-20T080357.656.jpg"
         alt="BULL Recruitment Warning"
+        style="height: 30rem; width: 20rem;"
       />
       <!-- <h2>Waspada Terhadap Penipuan!</h2>
       <p>
@@ -55,9 +56,9 @@ function close() {
 
 .popup-content {
   background-color: #fff;
-  padding: 1.5rem;
+  padding: 1rem;
   border-radius: 4px;
-  width: 90%;
+  /* width: 90%; */
   max-width: 600px;
   position: relative;
   text-align: center;
